@@ -51,32 +51,32 @@ homel   lda #$8D
 
         jsr clear1
         jsr clear2
-        lda #$FF 
-        sta $2000
-
         sta stor80
         lda mixon
         *lda mixoff      ; no text
         lda graphics    ; graphic mode
+
+* PAGE 1
         lda page1       ; go HGR
         lda hires       ; hgr 
+        lda #$FF
+        sta $2000
         jsr prnincode
         str "stor80 on, page 1, poke 2000,255"+#$8D
 
         jsr rdkey
 
-
+* PAGE 2
         lda page2
-        lda #$00 
+        lda #$AA 
         sta color1
         jsr clear1  
         jsr prnincode
         str "stor80 on, page 2, clear 1 with $FF" +#$8D 
         jsr movex2 
-
         jsr rdkey
 
-
+* PAGE 1
         lda page1 
         lda #%10101010 
         sta color1
@@ -129,9 +129,9 @@ movex2
         jsr auxmov      ; tranfer from  aux. mem.
         rts
 
-mains2  hex 0004        ; start address in aux
-maine2  hex FF07        ; $ 3FFF = end address in aux 
-auxs2   hex 0020
+mains2  hex 0020        ; start address in aux
+maine2  hex FF3F        ; $ 3FFF = end address in aux 
+auxs2   hex 0060
 
 
 clear1  
@@ -146,8 +146,6 @@ doclr1  sta $2000,x
         bne doclr1
         lda #$20 
         sta doclr1+2
-        lda #$00
-        sta doclr1+1
         rts
 
 * clear2 clears $4000 (page 2)

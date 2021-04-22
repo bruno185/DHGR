@@ -53,18 +53,19 @@
    50 |  1 dbuf.s     50 | Comment     | 11 |         |    0 | 00/800D               |         *jsr cout
    51 |  1 dbuf.s     51 | Empty       | 11 |         |    0 | 00/800D               |                                  
    52 |  1 dbuf.s     52 | Code        | 11 |         |    3 | 00/800D : 20 1A 81    |             jsr   clear1         
-   53 |  1 dbuf.s     53 | Code        | 11 |         |    3 | 00/8010 : 20 3A 81    |             jsr   clear2         
-   54 |  1 dbuf.s     54 | Code        | 11 |         |    2 | 00/8013 : A9 FF       |             lda   #$FF           
-   55 |  1 dbuf.s     55 | Code        | 11 |         |    3 | 00/8015 : 8D 00 20    |             sta   $2000          
-   56 |  1 dbuf.s     56 | Empty       | 11 |         |    0 | 00/8018               |                                  
-   57 |  1 dbuf.s     57 | Code        | 11 |         |    3 | 00/8018 : 8D 01 C0    |             sta   {$C001}        
-   58 |  1 dbuf.s     58 | Code        | 11 |         |    3 | 00/801B : AD 53 C0    |             lda   {$C053}        
-   59 |  1 dbuf.s     59 | Comment     | 11 |         |    0 | 00/801E               |         *lda mixoff      ; no text
-   60 |  1 dbuf.s     60 | Code        | 11 |         |    3 | 00/801E : AD 50 C0    |             lda   {$C050}        ; graphic mode
-   61 |  1 dbuf.s     61 | Code        | 11 |         |    3 | 00/8021 : AD 54 C0    |             lda   {$C054}        ; go HGR
-   62 |  1 dbuf.s     62 | Code        | 11 |         |    3 | 00/8024 : AD 57 C0    |             lda   {$C057}        ; hgr
-   63 |  1 dbuf.s     63 | Code        | 11 |         |    3 | 00/8027 : 20 5B 81    |             jsr   prnincode      
-   64 |  1 dbuf.s     64 | Data        | 11 |         |   34 | 00/802A : 21 F3 F4 EF |             str   "stor80 on, page 1, poke 2000,255"+#$8D
+   53 |  1 dbuf.s     53 | Code        | 11 |         |    3 | 00/8010 : 20 35 81    |             jsr   clear2         
+   54 |  1 dbuf.s     54 | Code        | 11 |         |    3 | 00/8013 : 8D 01 C0    |             sta   {$C001}        
+   55 |  1 dbuf.s     55 | Code        | 11 |         |    3 | 00/8016 : AD 53 C0    |             lda   {$C053}        
+   56 |  1 dbuf.s     56 | Comment     | 11 |         |    0 | 00/8019               |         *lda mixoff      ; no text
+   57 |  1 dbuf.s     57 | Code        | 11 |         |    3 | 00/8019 : AD 50 C0    |             lda   {$C050}        ; graphic mode
+   58 |  1 dbuf.s     58 | Empty       | 11 |         |    0 | 00/801C               |                                  
+   59 |  1 dbuf.s     59 | Comment     | 11 |         |    0 | 00/801C               | * PAGE 1
+   60 |  1 dbuf.s     60 | Code        | 11 |         |    3 | 00/801C : AD 54 C0    |             lda   {$C054}        ; go HGR
+   61 |  1 dbuf.s     61 | Code        | 11 |         |    3 | 00/801F : AD 57 C0    |             lda   {$C057}        ; hgr
+   62 |  1 dbuf.s     62 | Code        | 11 |         |    2 | 00/8022 : A9 FF       |             lda   #$FF           
+   63 |  1 dbuf.s     63 | Code        | 11 |         |    3 | 00/8024 : 8D 00 20    |             sta   $2000          
+   64 |  1 dbuf.s     64 | Code        | 11 |         |    3 | 00/8027 : 20 56 81    |             jsr   prnincode      
+   65 |  1 dbuf.s     65 | Data        | 11 |         |   34 | 00/802A : 21 F3 F4 EF |             str   "stor80 on, page 1, poke 2000,255"+#$8D
       |                  |             |    |         |      |           F2 B8 B0 A0 |
       |                  |             |    |         |      |           EF EE AC A0 |
       |                  |             |    |         |      |           F0 E1 E7 E5 |
@@ -73,16 +74,16 @@
       |                  |             |    |         |      |           A0 B2 B0 B0 |
       |                  |             |    |         |      |           B0 AC B2 B5 |
       |                  |             |    |         |      |           B5 8D       |
-   65 |  1 dbuf.s     65 | Empty       | 11 |         |    0 | 00/804C               |                                  
-   66 |  1 dbuf.s     66 | Code        | 11 |         |    3 | 00/804C : 20 0C FD    |             jsr   {$FD0C}        
-   67 |  1 dbuf.s     67 | Empty       | 11 |         |    0 | 00/804F               |                                  
+   66 |  1 dbuf.s     66 | Empty       | 11 |         |    0 | 00/804C               |                                  
+   67 |  1 dbuf.s     67 | Code        | 11 |         |    3 | 00/804C : 20 0C FD    |             jsr   {$FD0C}        
    68 |  1 dbuf.s     68 | Empty       | 11 |         |    0 | 00/804F               |                                  
-   69 |  1 dbuf.s     69 | Code        | 11 |         |    3 | 00/804F : AD 55 C0    |             lda   {$C055}        
-   70 |  1 dbuf.s     70 | Code        | 11 |         |    2 | 00/8052 : A9 00       |             lda   #$00           
-   71 |  1 dbuf.s     71 | Code        | 11 |         |    3 | 00/8054 : 8D 5A 81    |             sta   color1         
-   72 |  1 dbuf.s     72 | Code        | 11 |         |    3 | 00/8057 : 20 1A 81    |             jsr   clear1         
-   73 |  1 dbuf.s     73 | Code        | 11 |         |    3 | 00/805A : 20 5B 81    |             jsr   prnincode      
-   74 |  1 dbuf.s     74 | Data        | 11 |         |   37 | 00/805D : 24 F3 F4 EF |             str   "stor80 on, page 2, clear 1 with $FF"+#$8D
+   69 |  1 dbuf.s     69 | Comment     | 11 |         |    0 | 00/804F               | * PAGE 2
+   70 |  1 dbuf.s     70 | Code        | 11 |         |    3 | 00/804F : AD 55 C0    |             lda   {$C055}        
+   71 |  1 dbuf.s     71 | Code        | 11 |         |    2 | 00/8052 : A9 AA       |             lda   #$AA           
+   72 |  1 dbuf.s     72 | Code        | 11 |         |    3 | 00/8054 : 8D 55 81    |             sta   color1         
+   73 |  1 dbuf.s     73 | Code        | 11 |         |    3 | 00/8057 : 20 1A 81    |             jsr   clear1         
+   74 |  1 dbuf.s     74 | Code        | 11 |         |    3 | 00/805A : 20 56 81    |             jsr   prnincode      
+   75 |  1 dbuf.s     75 | Data        | 11 |         |   37 | 00/805D : 24 F3 F4 EF |             str   "stor80 on, page 2, clear 1 with $FF"+#$8D
       |                  |             |    |         |      |           F2 B8 B0 A0 |
       |                  |             |    |         |      |           EF EE AC A0 |
       |                  |             |    |         |      |           F0 E1 E7 E5 |
@@ -92,16 +93,15 @@
       |                  |             |    |         |      |           F7 E9 F4 E8 |
       |                  |             |    |         |      |           A0 A4 C6 C6 |
       |                  |             |    |         |      |           8D          |
-   75 |  1 dbuf.s     75 | Code        | 11 |         |    3 | 00/8082 : 20 F1 80    |             jsr   movex2         
-   76 |  1 dbuf.s     76 | Empty       | 11 |         |    0 | 00/8085               |                                  
+   76 |  1 dbuf.s     76 | Code        | 11 |         |    3 | 00/8082 : 20 F1 80    |             jsr   movex2         
    77 |  1 dbuf.s     77 | Code        | 11 |         |    3 | 00/8085 : 20 0C FD    |             jsr   {$FD0C}        
    78 |  1 dbuf.s     78 | Empty       | 11 |         |    0 | 00/8088               |                                  
-   79 |  1 dbuf.s     79 | Empty       | 11 |         |    0 | 00/8088               |                                  
+   79 |  1 dbuf.s     79 | Comment     | 11 |         |    0 | 00/8088               | * PAGE 1
    80 |  1 dbuf.s     80 | Code        | 11 |         |    3 | 00/8088 : AD 54 C0    |             lda   {$C054}        
    81 |  1 dbuf.s     81 | Code        | 11 |         |    2 | 00/808B : A9 AA       |             lda   #%10101010     
-   82 |  1 dbuf.s     82 | Code        | 11 |         |    3 | 00/808D : 8D 5A 81    |             sta   color1         
+   82 |  1 dbuf.s     82 | Code        | 11 |         |    3 | 00/808D : 8D 55 81    |             sta   color1         
    83 |  1 dbuf.s     83 | Code        | 11 |         |    3 | 00/8090 : 20 1A 81    |             jsr   clear1         
-   84 |  1 dbuf.s     84 | Code        | 11 |         |    3 | 00/8093 : 20 5B 81    |             jsr   prnincode      
+   84 |  1 dbuf.s     84 | Code        | 11 |         |    3 | 00/8093 : 20 56 81    |             jsr   prnincode      
    85 |  1 dbuf.s     85 | Data        | 11 |         |   43 | 00/8096 : 2A F3 F4 EF |             str   "stor80 on, page 1, clear 1 with %10101010"+#$8D
       |                  |             |    |         |      |           F2 B8 B0 A0 |
       |                  |             |    |         |      |           EF EE AC A0 |
@@ -159,14 +159,14 @@
   129 |  1 dbuf.s    129 | Code        | 11 |         |    3 | 00/8110 : 20 11 C3    |             jsr   {$C311}        ; tranfer from  aux. mem.
   130 |  1 dbuf.s    130 | Code        | 11 |         |    1 | 00/8113 : 60          |             rts                  
   131 |  1 dbuf.s    131 | Empty       | 11 |         |    0 | 00/8114               |                                  
-  132 |  1 dbuf.s    132 | Data        | 11 |         |    2 | 00/8114 : 00 04       | mains2      hex   0004           ; start address in aux
-  133 |  1 dbuf.s    133 | Data        | 11 |         |    2 | 00/8116 : FF 07       | maine2      hex   FF07           ; $ 3FFF = end address in aux
-  134 |  1 dbuf.s    134 | Data        | 11 |         |    2 | 00/8118 : 00 20       | auxs2       hex   0020           
+  132 |  1 dbuf.s    132 | Data        | 11 |         |    2 | 00/8114 : 00 20       | mains2      hex   0020           ; start address in aux
+  133 |  1 dbuf.s    133 | Data        | 11 |         |    2 | 00/8116 : FF 3F       | maine2      hex   FF3F           ; $ 3FFF = end address in aux
+  134 |  1 dbuf.s    134 | Data        | 11 |         |    2 | 00/8118 : 00 60       | auxs2       hex   0060           
   135 |  1 dbuf.s    135 | Empty       | 11 |         |    0 | 00/811A               |                                  
   136 |  1 dbuf.s    136 | Empty       | 11 |         |    0 | 00/811A               |                                  
   137 |  1 dbuf.s    137 | Empty       | 11 |         |    0 | 00/811A               | clear1                           
   138 |  1 dbuf.s    138 | Code        | 11 |         |    2 | 00/811A : A2 00       |             ldx   #$00           
-  139 |  1 dbuf.s    139 | Code        | 11 |         |    3 | 00/811C : AD 5A 81    |             lda   color1         
+  139 |  1 dbuf.s    139 | Code        | 11 |         |    3 | 00/811C : AD 55 81    |             lda   color1         
   140 |  1 dbuf.s    140 | Code        | 11 |         |    3 | 00/811F : 9D 00 20    | doclr1      sta   $2000,x        
   141 |  1 dbuf.s    141 | Code        | 11 |         |    1 | 00/8122 : E8          |             inx                  
   142 |  1 dbuf.s    142 | Code        | 11 |         |    2 | 00/8123 : D0 FA       |             bne   doclr1         
@@ -176,75 +176,73 @@
   146 |  1 dbuf.s    146 | Code        | 11 |         |    2 | 00/812D : D0 F0       |             bne   doclr1         
   147 |  1 dbuf.s    147 | Code        | 11 |         |    2 | 00/812F : A9 20       |             lda   #$20           
   148 |  1 dbuf.s    148 | Code        | 11 |         |    3 | 00/8131 : 8D 21 81    |             sta   doclr1+2       
-  149 |  1 dbuf.s    149 | Code        | 11 |         |    2 | 00/8134 : A9 00       |             lda   #$00           
-  150 |  1 dbuf.s    150 | Code        | 11 |         |    3 | 00/8136 : 8D 20 81    |             sta   doclr1+1       
-  151 |  1 dbuf.s    151 | Code        | 11 |         |    1 | 00/8139 : 60          |             rts                  
-  152 |  1 dbuf.s    152 | Empty       | 11 |         |    0 | 00/813A               |                                  
-  153 |  1 dbuf.s    153 | Comment     | 11 |         |    0 | 00/813A               | * clear2 clears $4000 (page 2)
-  154 |  1 dbuf.s    154 | Empty       | 11 |         |    0 | 00/813A               | clear2                           
-  155 |  1 dbuf.s    155 | Code        | 11 |         |    2 | 00/813A : A2 00       |             ldx   #$00           
-  156 |  1 dbuf.s    156 | Code        | 11 |         |    3 | 00/813C : AD 5A 81    |             lda   color1         
-  157 |  1 dbuf.s    157 | Code        | 11 |         |    3 | 00/813F : 9D 00 40    | doclr2      sta   $4000,x        
-  158 |  1 dbuf.s    158 | Code        | 11 |         |    1 | 00/8142 : E8          |             inx                  
-  159 |  1 dbuf.s    159 | Code        | 11 |         |    2 | 00/8143 : D0 FA       |             bne   doclr2         
-  160 |  1 dbuf.s    160 | Code        | 11 |         |    3 | 00/8145 : EE 41 81    |             inc   doclr2+2       
-  161 |  1 dbuf.s    161 | Code        | 11 |         |    3 | 00/8148 : AC 41 81    |             ldy   doclr2+2       
-  162 |  1 dbuf.s    162 | Code        | 11 |         |    2 | 00/814B : C0 60       |             cpy   #$60           
-  163 |  1 dbuf.s    163 | Code        | 11 |         |    2 | 00/814D : D0 F0       |             bne   doclr2         
-  164 |  1 dbuf.s    164 | Code        | 11 |         |    2 | 00/814F : A9 40       |             lda   #$40           
-  165 |  1 dbuf.s    165 | Code        | 11 |         |    3 | 00/8151 : 8D 41 81    |             sta   doclr2+2       
-  166 |  1 dbuf.s    166 | Code        | 11 |         |    2 | 00/8154 : A9 00       |             lda   #$00           
-  167 |  1 dbuf.s    167 | Code        | 11 |         |    3 | 00/8156 : 8D 40 81    |             sta   doclr2+1       
-  168 |  1 dbuf.s    168 | Code        | 11 |         |    1 | 00/8159 : 60          |             rts                  
-  169 |  1 dbuf.s    169 | Empty       | 11 |         |    0 | 00/815A               |                                  
-  170 |  1 dbuf.s    170 | Data        | 11 |         |    1 | 00/815A : 00          | color1      hex   00             
-  171 |  1 dbuf.s    171 | Empty       | 11 |         |    0 | 00/815B               |                                  
-  172 |  1 dbuf.s    172 | Empty       | 11 |         |    0 | 00/815B               | prnincode                        
-  173 |  1 dbuf.s    173 | Code        | 11 |         |    3 | 00/815B : 4C 60 81    |             jmp   picode         
-  174 |  1 dbuf.s    174 | Equivalence | 11 |         |    0 | 00/815E               | pg1         equ   $100           
-  175 |  1 dbuf.s    175 | Data        | 11 |         |    1 | 00/815E : 00          | stack       hex   00             
-  176 |  1 dbuf.s    176 | Data        | 11 |         |    1 | 00/815F : 00          | long        hex   00             
-  177 |  1 dbuf.s    177 | Code        | 11 |         |    1 | 00/8160 : BA          | picode      tsx                  ; rcup stack
-  178 |  1 dbuf.s    178 | Code        | 11 |         |    3 | 00/8161 : 8E 5E 81    |             stx   stack          ; stack
-  179 |  1 dbuf.s    179 | Code        | 11 |         |    3 | 00/8164 : BD 01 01    |             lda   {$100}+1,x     
-  180 |  1 dbuf.s    180 | Code        | 11 |         |    2 | 00/8167 : 85 06       |             sta   {$06}          ; save hi
-  181 |  1 dbuf.s    181 | Code        | 11 |         |    3 | 00/8169 : BD 02 01    |             lda   {$100}+2,x     ; hi
-  182 |  1 dbuf.s    182 | Code        | 11 |         |    2 | 00/816C : 85 07       |             sta   {$06}+1        ; save hi
-  183 |  1 dbuf.s    183 | Code        | 11 |         |    2 | 00/816E : A0 01       |             ldy   #$01           
-  184 |  1 dbuf.s    184 | Code        | 11 |         |    2 | 00/8170 : B1 06       |             lda   ({$06}),y      
-  185 |  1 dbuf.s    185 | Code        | 11 |         |    3 | 00/8172 : 8D 5F 81    |             sta   long           
-  186 |  1 dbuf.s    186 | Code        | 11 |         |    1 | 00/8175 : C8          |             iny                  
-  187 |  1 dbuf.s    187 | Code        | 11 |         |    3 | 00/8176 : AE 5F 81    |             ldx   long           
-  188 |  1 dbuf.s    188 | Code        | 11 |         |    2 | 00/8179 : B1 06       | looppic     lda   ({$06}),y      
-  189 |  1 dbuf.s    189 | Code        | 11 |         |    3 | 00/817B : 20 ED FD    |             jsr   {$FDED}        
-  190 |  1 dbuf.s    190 | Code        | 11 |         |    1 | 00/817E : C8          |             iny                  
-  191 |  1 dbuf.s    191 | Code        | 11 |         |    1 | 00/817F : CA          |             dex                  
-  192 |  1 dbuf.s    192 | Code        | 11 |         |    2 | 00/8180 : D0 F7       |             bne   looppic        
-  193 |  1 dbuf.s    193 | Comment     | 11 |         |    0 | 00/8182               | *
-  194 |  1 dbuf.s    194 | Code        | 11 |         |    3 | 00/8182 : AE 5E 81    |             ldx   stack          
-  195 |  1 dbuf.s    195 | Code        | 11 |         |    2 | 00/8185 : A5 06       |             lda   {$06}          
-  196 |  1 dbuf.s    196 | Code        | 11 |         |    1 | 00/8187 : 38          |             sec                  
-  197 |  1 dbuf.s    197 | Code        | 11 |         |    3 | 00/8188 : 6D 5F 81    |             adc   long           
-  198 |  1 dbuf.s    198 | Code        | 11 |         |    3 | 00/818B : 9D 01 01    |             sta   {$100}+1,x     
-  199 |  1 dbuf.s    199 | Code        | 11 |         |    2 | 00/818E : 90 07       |             bcc   suite          
-  200 |  1 dbuf.s    200 | Code        | 11 |         |    2 | 00/8190 : A5 07       |             lda   {$06}+1        
-  201 |  1 dbuf.s    201 | Code        | 11 |         |    2 | 00/8192 : 69 00       |             adc   #$00           
-  202 |  1 dbuf.s    202 | Code        | 11 |         |    3 | 00/8194 : 9D 02 01    |             sta   {$100}+2,x     
-  203 |  1 dbuf.s    203 | Code        | 11 |         |    1 | 00/8197 : 60          | suite       rts                  
-  204 |  1 dbuf.s    204 | Empty       | 11 |         |    0 | 00/8198               |                                  
-  205 |  1 dbuf.s    205 | Code        | 11 |         |    3 | 00/8198 : 8D 50 C0    |             STA   $C050          ;TURN ON GRAPHICS
-  206 |  1 dbuf.s    206 | Code        | 11 |         |    3 | 00/819B : 8D 57 C0    |             STA   $C057          ;TURN ON HIRES
-  207 |  1 dbuf.s    207 | Code        | 11 |         |    3 | 00/819E : 8D 52 C0    |             STA   {$C052}        ;TURN ON FULLSCREEN
-  208 |  1 dbuf.s    208 | Code        | 11 |         |    3 | 00/81A1 : 8D 0D C0    |             STA   $C00D          ;TURN ON 80 COLUMNS
-  209 |  1 dbuf.s    209 | Code        | 11 |         |    3 | 00/81A4 : 8D 01 C0    |             STA   $C001          ;TURN ON 805TORE
-  210 |  1 dbuf.s    210 | Code        | 11 |         |    3 | 00/81A7 : 8D 55 C0    |             STA   $C055          ;TURN ON PAGE2
-  211 |  1 dbuf.s    211 | Empty       | 11 |         |    0 | 00/81AA               |                                  
-  212 |  1 dbuf.s    212 | Empty       | 11 |         |    0 | 00/81AA               |                                  
-  213 |  1 dbuf.s    213 | Code        | 11 |         |    3 | 00/81AA : 8D 0C C0    |             sta   $C00C          
-  214 |  1 dbuf.s    214 | Empty       | 11 |         |    0 | 00/81AD               |                                  
-  215 |  1 dbuf.s    215 | Code        | 11 |         |    3 | 00/81AD : AD 54 C0    |             lda   {$C054}        ; go HGR
-  216 |  1 dbuf.s    216 | Code        | 11 |         |    3 | 00/81B0 : AD 52 C0    |             lda   {$C052}        ; no text
-  217 |  1 dbuf.s    217 | Code        | 11 |         |    3 | 00/81B3 : AD 50 C0    |             lda   {$C050}        ; graphic mode
-  218 |  1 dbuf.s    218 | Code        | 11 |         |    3 | 00/81B6 : AD 57 C0    |             lda   {$C057}        ; hgr
-  219 |  1 dbuf.s    219 | Empty       | 11 |         |    0 | 00/81B9               |                                  
+  149 |  1 dbuf.s    149 | Code        | 11 |         |    1 | 00/8134 : 60          |             rts                  
+  150 |  1 dbuf.s    150 | Empty       | 11 |         |    0 | 00/8135               |                                  
+  151 |  1 dbuf.s    151 | Comment     | 11 |         |    0 | 00/8135               | * clear2 clears $4000 (page 2)
+  152 |  1 dbuf.s    152 | Empty       | 11 |         |    0 | 00/8135               | clear2                           
+  153 |  1 dbuf.s    153 | Code        | 11 |         |    2 | 00/8135 : A2 00       |             ldx   #$00           
+  154 |  1 dbuf.s    154 | Code        | 11 |         |    3 | 00/8137 : AD 55 81    |             lda   color1         
+  155 |  1 dbuf.s    155 | Code        | 11 |         |    3 | 00/813A : 9D 00 40    | doclr2      sta   $4000,x        
+  156 |  1 dbuf.s    156 | Code        | 11 |         |    1 | 00/813D : E8          |             inx                  
+  157 |  1 dbuf.s    157 | Code        | 11 |         |    2 | 00/813E : D0 FA       |             bne   doclr2         
+  158 |  1 dbuf.s    158 | Code        | 11 |         |    3 | 00/8140 : EE 3C 81    |             inc   doclr2+2       
+  159 |  1 dbuf.s    159 | Code        | 11 |         |    3 | 00/8143 : AC 3C 81    |             ldy   doclr2+2       
+  160 |  1 dbuf.s    160 | Code        | 11 |         |    2 | 00/8146 : C0 60       |             cpy   #$60           
+  161 |  1 dbuf.s    161 | Code        | 11 |         |    2 | 00/8148 : D0 F0       |             bne   doclr2         
+  162 |  1 dbuf.s    162 | Code        | 11 |         |    2 | 00/814A : A9 40       |             lda   #$40           
+  163 |  1 dbuf.s    163 | Code        | 11 |         |    3 | 00/814C : 8D 3C 81    |             sta   doclr2+2       
+  164 |  1 dbuf.s    164 | Code        | 11 |         |    2 | 00/814F : A9 00       |             lda   #$00           
+  165 |  1 dbuf.s    165 | Code        | 11 |         |    3 | 00/8151 : 8D 3B 81    |             sta   doclr2+1       
+  166 |  1 dbuf.s    166 | Code        | 11 |         |    1 | 00/8154 : 60          |             rts                  
+  167 |  1 dbuf.s    167 | Empty       | 11 |         |    0 | 00/8155               |                                  
+  168 |  1 dbuf.s    168 | Data        | 11 |         |    1 | 00/8155 : 00          | color1      hex   00             
+  169 |  1 dbuf.s    169 | Empty       | 11 |         |    0 | 00/8156               |                                  
+  170 |  1 dbuf.s    170 | Empty       | 11 |         |    0 | 00/8156               | prnincode                        
+  171 |  1 dbuf.s    171 | Code        | 11 |         |    3 | 00/8156 : 4C 5B 81    |             jmp   picode         
+  172 |  1 dbuf.s    172 | Equivalence | 11 |         |    0 | 00/8159               | pg1         equ   $100           
+  173 |  1 dbuf.s    173 | Data        | 11 |         |    1 | 00/8159 : 00          | stack       hex   00             
+  174 |  1 dbuf.s    174 | Data        | 11 |         |    1 | 00/815A : 00          | long        hex   00             
+  175 |  1 dbuf.s    175 | Code        | 11 |         |    1 | 00/815B : BA          | picode      tsx                  ; rcup stack
+  176 |  1 dbuf.s    176 | Code        | 11 |         |    3 | 00/815C : 8E 59 81    |             stx   stack          ; stack
+  177 |  1 dbuf.s    177 | Code        | 11 |         |    3 | 00/815F : BD 01 01    |             lda   {$100}+1,x     
+  178 |  1 dbuf.s    178 | Code        | 11 |         |    2 | 00/8162 : 85 06       |             sta   {$06}          ; save hi
+  179 |  1 dbuf.s    179 | Code        | 11 |         |    3 | 00/8164 : BD 02 01    |             lda   {$100}+2,x     ; hi
+  180 |  1 dbuf.s    180 | Code        | 11 |         |    2 | 00/8167 : 85 07       |             sta   {$06}+1        ; save hi
+  181 |  1 dbuf.s    181 | Code        | 11 |         |    2 | 00/8169 : A0 01       |             ldy   #$01           
+  182 |  1 dbuf.s    182 | Code        | 11 |         |    2 | 00/816B : B1 06       |             lda   ({$06}),y      
+  183 |  1 dbuf.s    183 | Code        | 11 |         |    3 | 00/816D : 8D 5A 81    |             sta   long           
+  184 |  1 dbuf.s    184 | Code        | 11 |         |    1 | 00/8170 : C8          |             iny                  
+  185 |  1 dbuf.s    185 | Code        | 11 |         |    3 | 00/8171 : AE 5A 81    |             ldx   long           
+  186 |  1 dbuf.s    186 | Code        | 11 |         |    2 | 00/8174 : B1 06       | looppic     lda   ({$06}),y      
+  187 |  1 dbuf.s    187 | Code        | 11 |         |    3 | 00/8176 : 20 ED FD    |             jsr   {$FDED}        
+  188 |  1 dbuf.s    188 | Code        | 11 |         |    1 | 00/8179 : C8          |             iny                  
+  189 |  1 dbuf.s    189 | Code        | 11 |         |    1 | 00/817A : CA          |             dex                  
+  190 |  1 dbuf.s    190 | Code        | 11 |         |    2 | 00/817B : D0 F7       |             bne   looppic        
+  191 |  1 dbuf.s    191 | Comment     | 11 |         |    0 | 00/817D               | *
+  192 |  1 dbuf.s    192 | Code        | 11 |         |    3 | 00/817D : AE 59 81    |             ldx   stack          
+  193 |  1 dbuf.s    193 | Code        | 11 |         |    2 | 00/8180 : A5 06       |             lda   {$06}          
+  194 |  1 dbuf.s    194 | Code        | 11 |         |    1 | 00/8182 : 38          |             sec                  
+  195 |  1 dbuf.s    195 | Code        | 11 |         |    3 | 00/8183 : 6D 5A 81    |             adc   long           
+  196 |  1 dbuf.s    196 | Code        | 11 |         |    3 | 00/8186 : 9D 01 01    |             sta   {$100}+1,x     
+  197 |  1 dbuf.s    197 | Code        | 11 |         |    2 | 00/8189 : 90 07       |             bcc   suite          
+  198 |  1 dbuf.s    198 | Code        | 11 |         |    2 | 00/818B : A5 07       |             lda   {$06}+1        
+  199 |  1 dbuf.s    199 | Code        | 11 |         |    2 | 00/818D : 69 00       |             adc   #$00           
+  200 |  1 dbuf.s    200 | Code        | 11 |         |    3 | 00/818F : 9D 02 01    |             sta   {$100}+2,x     
+  201 |  1 dbuf.s    201 | Code        | 11 |         |    1 | 00/8192 : 60          | suite       rts                  
+  202 |  1 dbuf.s    202 | Empty       | 11 |         |    0 | 00/8193               |                                  
+  203 |  1 dbuf.s    203 | Code        | 11 |         |    3 | 00/8193 : 8D 50 C0    |             STA   $C050          ;TURN ON GRAPHICS
+  204 |  1 dbuf.s    204 | Code        | 11 |         |    3 | 00/8196 : 8D 57 C0    |             STA   $C057          ;TURN ON HIRES
+  205 |  1 dbuf.s    205 | Code        | 11 |         |    3 | 00/8199 : 8D 52 C0    |             STA   {$C052}        ;TURN ON FULLSCREEN
+  206 |  1 dbuf.s    206 | Code        | 11 |         |    3 | 00/819C : 8D 0D C0    |             STA   $C00D          ;TURN ON 80 COLUMNS
+  207 |  1 dbuf.s    207 | Code        | 11 |         |    3 | 00/819F : 8D 01 C0    |             STA   $C001          ;TURN ON 805TORE
+  208 |  1 dbuf.s    208 | Code        | 11 |         |    3 | 00/81A2 : 8D 55 C0    |             STA   $C055          ;TURN ON PAGE2
+  209 |  1 dbuf.s    209 | Empty       | 11 |         |    0 | 00/81A5               |                                  
+  210 |  1 dbuf.s    210 | Empty       | 11 |         |    0 | 00/81A5               |                                  
+  211 |  1 dbuf.s    211 | Code        | 11 |         |    3 | 00/81A5 : 8D 0C C0    |             sta   $C00C          
+  212 |  1 dbuf.s    212 | Empty       | 11 |         |    0 | 00/81A8               |                                  
+  213 |  1 dbuf.s    213 | Code        | 11 |         |    3 | 00/81A8 : AD 54 C0    |             lda   {$C054}        ; go HGR
+  214 |  1 dbuf.s    214 | Code        | 11 |         |    3 | 00/81AB : AD 52 C0    |             lda   {$C052}        ; no text
+  215 |  1 dbuf.s    215 | Code        | 11 |         |    3 | 00/81AE : AD 50 C0    |             lda   {$C050}        ; graphic mode
+  216 |  1 dbuf.s    216 | Code        | 11 |         |    3 | 00/81B1 : AD 57 C0    |             lda   {$C057}        ; hgr
+  217 |  1 dbuf.s    217 | Empty       | 11 |         |    0 | 00/81B4               |                                  
 ------+------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
