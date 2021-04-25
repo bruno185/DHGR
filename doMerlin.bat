@@ -28,7 +28,7 @@ rem add binary program to image disk
 rem %ACJAR% -p %PRG%.po %PRG% bin 768 < %PRG%
 rem add DUMMYFILE to image disk
 rem %ACJAR% -p %PRG%.po DUMMYFILE txt 0 < DUMMYFILE 
-%ACJAR% -p %PRG%.po A.DHGR bin 8192 < A.DHGR
+rem %ACJAR% -p %PRG%.po A.DHGR bin 8192 < A.DHGR
 
 echo ----------- fin Applecommander ---------------
 echo --------------- Debut Applewin ---------------

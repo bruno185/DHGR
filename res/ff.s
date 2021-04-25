@@ -9,7 +9,8 @@
 * Developed with Merlin-16     *
 *                              *
 ********************************
-
+* https://github.com/fadden/fdraw
+*
 * Set to 1 to build FDRAW.FAST, set to zero to
 * build FDRAW.SMALL.
 USE_FAST equ   1

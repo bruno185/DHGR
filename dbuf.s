@@ -34,29 +34,107 @@ vbl      equ $C019
 kbd      equ $C000
 kbdstrb  equ $C010
 *
+* page 0
+*
+cv        equ $25
+ch        equ $24 
+wndlft    equ $20
+wndwdth   equ $21
+wndtop    equ $22
+wndbtm    equ $23 
+prompt    equ $33
+*
 ptr     equ $06
 ptr2    equ $08
 
+        DO 0
+
+m_inc   MAC             ; inc 16  bits integer
+        inc ]1          ; usually a pointer
+        bne m_incf
+        inc ]1+1
+m_incf  EOM
+
+movmem  MAC
+        lda #<]1        ; begining of memory to tranfer 
+        sta $3C
+        lda #>]1
+        sta $3D
+*
+        lda #<]2        ; end of memory to tranfer
+        sta $3E
+        lda #>]2
+        sta $3F
+*
+        lda #<]3        ; detination address   
+        sta $42
+        lda #>]3
+        sta $43
+*
+        lda #]4         ; direction flag
+        bne aux2m       
+        clc             ; O (clc) = AUX to MAIN
+        jmp mov
+aux2m   sec             ; 1 (sec) = MAIN to AUX
+mov     jsr auxmov      ; copy memory 
+        EOM
+
+        FIN
+
 
         org $8000
-        lda col80on
-        ldx #$18
-homel   lda #$8D
+** don't do that 
+*        sta col80off
+*        ldx #$18
+*        lda #$8D
+*loop    jsr cout
+*        dex 
+*        bne loop
+*
+*        jsr rdkey
+
+
+        lda #$11         ; 40 col. 
         jsr cout
-        dex
-        bne homel
+        jsr prnincode
+        str "40 col. step 1"+#$8D
+        jsr rdkey
+*
+        lda #$3         ; = pr#3 ==> 80 col.
+        jsr $FE95
+        jsr prnincode
+        str "80 col step 2"+#$8D
+        jsr rdkey
+*
+        lda #$11        ; 40 col. 
+        jsr cout
+        jsr prnincode
+        str "40 col.  step 3"+#$8D 
+        jsr rdkey
+* 
+        lda #$12        ; 80 col. 
+        jsr cout
+        jsr prnincode
+        str "80 col  step 4"+#$8D 
+        jsr rdkey
+*             
+        lda #$15         ; turn off 80 col firmware
+        jsr cout
+        jsr prnincode
+        str "40 col  step 5"+#$8D  
+        jsr rdkey 
 
-        *lda #17         ; 40 col. 
-        *jsr cout
-
+        jsr myhome
+        jsr rdkey
         jsr clear1
         jsr clear2
+
         sta stor80
         lda mixon
         *lda mixoff      ; no text
         lda graphics    ; graphic mode
 
-* PAGE 1
+* * * * * * PAGE 1
         lda page1       ; go HGR
         lda hires       ; hgr 
         lda #$FF
@@ -66,17 +144,14 @@ homel   lda #$8D
 
         jsr rdkey
 
-* PAGE 2
+* * * * * * PAGE 2
         lda page2
-        lda #$AA 
-        sta color1
-        jsr clear1  
         jsr prnincode
         str "stor80 on, page 2, clear 1 with $FF" +#$8D 
-        jsr movex2 
+        movmem $400;$800;$6000;$0
         jsr rdkey
 
-* PAGE 1
+* * * * * * PAGE 1 
         lda page1 
         lda #%10101010 
         sta color1
@@ -86,53 +161,6 @@ homel   lda #$8D
         jsr rdkey
         jsr text
         rts
-
-movex
-        lda mains       ; begining of memory to tranfer 
-        sta $3C
-        lda mains+1
-        sta $3D
-*
-        lda maine       ; end of memory to tranfer
-        sta $3E
-        lda maine+1
-        sta $3F
-*
-        lda auxs        ; detination address   
-        sta $42
-        lda auxs+1
-        sta $43
-        sec
-        jsr auxmov      ; tranfer to  aux. mem.
-        rts
-
-mains   hex 0040        ; start address in main
-maine   hex FF5F        ; $ 5FFF = end address in main 
-auxs    hex 0020
-*
-movex2
-        lda mains2       ; begining of memory to tranfer 
-        sta $3C
-        lda mains2+1
-        sta $3D
-*
-        lda maine2       ; end of memory to tranfer
-        sta $3E
-        lda maine2+1
-        sta $3F
-*
-        lda auxs2        ; detination address   
-        sta $42
-        lda auxs2+1
-        sta $43
-        clc
-        jsr auxmov      ; tranfer from  aux. mem.
-        rts
-
-mains2  hex 0020        ; start address in aux
-maine2  hex FF3F        ; $ 3FFF = end address in aux 
-auxs2   hex 0060
-
 
 clear1  
         ldx #$00
@@ -166,6 +194,13 @@ doclr2  sta $4000,x
         rts
 
 color1  hex 00
+
+myhome  ldx #$18
+homel   lda #$8D
+        jsr cout
+        dex
+        bne homel
+        rts
 
 prnincode   
         jmp picode
