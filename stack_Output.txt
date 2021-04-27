@@ -1,0 +1,125 @@
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+ Line | # File       Line | Line Type   | MX |  Reloc  | Size | Address   Object Code |  Source Code                                                      
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+    1 |  1 stack.s      1 | Comment     | 11 |         |    0 | 00/8000               | * ROM routines
+    2 |  1 stack.s      2 | Directive   | 11 |         |    0 | 00/8000               |             lst   off            
+    3 |  1 stack.s      3 | Comment     | 11 |         |    0 | 00/8000               | *
+    4 |  1 stack.s      4 | Equivalence | 11 |         |    0 | 00/8000               | home        equ   $FC58          
+    5 |  1 stack.s      5 | Equivalence | 11 |         |    0 | 00/8000               | text        equ   $FB2F          
+    6 |  1 stack.s      6 | Equivalence | 11 |         |    0 | 00/8000               | cout        equ   $FDED          
+    7 |  1 stack.s      7 | Equivalence | 11 |         |    0 | 00/8000               | vtab        equ   $FC22          
+    8 |  1 stack.s      8 | Equivalence | 11 |         |    0 | 00/8000               | getln       equ   $FD6A          
+    9 |  1 stack.s      9 | Equivalence | 11 |         |    0 | 00/8000               | bascalc     equ   $FBC1          
+   10 |  1 stack.s     10 | Equivalence | 11 |         |    0 | 00/8000               | cr          equ   $FD8E          ; print carriage return
+   11 |  1 stack.s     11 | Equivalence | 11 |         |    0 | 00/8000               | clreop      equ   $FC42          ; clear from cursor to end of page
+   12 |  1 stack.s     12 | Equivalence | 11 |         |    0 | 00/8000               | clreol      equ   $FC9C          ; clear from cursor to end of line
+   13 |  1 stack.s     13 | Equivalence | 11 |         |    0 | 00/8000               | xtohex      equ   $F944          
+   14 |  1 stack.s     14 | Equivalence | 11 |         |    0 | 00/8000               | rdkey       equ   $FD0C          ; wait for keypress
+   15 |  1 stack.s     15 | Equivalence | 11 |         |    0 | 00/8000               | auxmov      equ   $C311          
+   16 |  1 stack.s     16 | Equivalence | 11 |         |    0 | 00/8000               | xfer        equ   $C314          
+   17 |  1 stack.s     17 | Equivalence | 11 |         |    0 | 00/8000               | wait        equ   $FCA8          
+   18 |  1 stack.s     18 | Comment     | 11 |         |    0 | 00/8000               | *
+   19 |  1 stack.s     19 | Comment     | 11 |         |    0 | 00/8000               | * page 0
+   20 |  1 stack.s     20 | Comment     | 11 |         |    0 | 00/8000               | *
+   21 |  1 stack.s     21 | Equivalence | 11 |         |    0 | 00/8000               | cv          equ   $25            
+   22 |  1 stack.s     22 | Equivalence | 11 |         |    0 | 00/8000               | ch          equ   $24            
+   23 |  1 stack.s     23 | Equivalence | 11 |         |    0 | 00/8000               | wndlft      equ   $20            
+   24 |  1 stack.s     24 | Equivalence | 11 |         |    0 | 00/8000               | wndwdth     equ   $21            
+   25 |  1 stack.s     25 | Equivalence | 11 |         |    0 | 00/8000               | wndtop      equ   $22            
+   26 |  1 stack.s     26 | Equivalence | 11 |         |    0 | 00/8000               | wndbtm      equ   $23            
+   27 |  1 stack.s     27 | Equivalence | 11 |         |    0 | 00/8000               | prompt      equ   $33            
+   28 |  1 stack.s     28 | Comment     | 11 |         |    0 | 00/8000               | *
+   29 |  1 stack.s     29 | Equivalence | 11 |         |    0 | 00/8000               | ptr         equ   $06            
+   30 |  1 stack.s     30 | Equivalence | 11 |         |    0 | 00/8000               | ptr2        equ   $08            
+   31 |  1 stack.s     31 | Comment     | 11 |         |    0 | 00/8000               | *
+   32 |  1 stack.s     32 | Empty       | 11 |         |    0 | 00/8000               |                                  
+   33 |  1 stack.s     33 | Directive   | 11 |         |    0 | 00/8000               |             org   $8000          
+   34 |  1 stack.s     34 | Comment     | 11 |         |    0 | 00/8000               | * init 
+   35 |  1 stack.s     35 | Code        | 11 |         |    2 | 00/8000 : A9 00       |             lda   #$00           ; init counter
+   36 |  1 stack.s     36 | Code        | 11 |         |    3 | 00/8002 : 8D 96 80    |             sta   scount         
+   37 |  1 stack.s     37 | Code        | 11 |         |    3 | 00/8005 : 8D 97 80    |             sta   scount+1       
+   38 |  1 stack.s     38 | Code        | 11 |         |    3 | 00/8008 : AD 98 80    |             lda   sbase          ; init ptr to first free place
+   39 |  1 stack.s     39 | Code        | 11 |         |    2 | 00/800B : 85 06       |             sta   {$06}          
+   40 |  1 stack.s     40 | Code        | 11 |         |    3 | 00/800D : AD 99 80    |             lda   sbase+1        
+   41 |  1 stack.s     41 | Code        | 11 |         |    2 | 00/8010 : 85 07       |             sta   {$06}+1        
+   42 |  1 stack.s     42 | Comment     | 11 |         |    0 | 00/8012               | *
+   43 |  1 stack.s     43 | Code        | 11 |         |    2 | 00/8012 : A9 AA       |             lda   #$AA           
+   44 |  1 stack.s     44 | Code        | 11 |         |    3 | 00/8014 : 8D 9A 80    |             sta   tempo          
+   45 |  1 stack.s     45 | Code        | 11 |         |    2 | 00/8017 : A9 DD       |             lda   #$DD           
+   46 |  1 stack.s     46 | Code        | 11 |         |    3 | 00/8019 : 8D 9B 80    |             sta   tempo+1        
+   47 |  1 stack.s     47 | Code        | 11 |         |    3 | 00/801C : 20 45 80    |             jsr   psuh           
+   48 |  1 stack.s     48 | Empty       | 11 |         |    0 | 00/801F               |                                  
+   49 |  1 stack.s     49 | Code        | 11 |         |    2 | 00/801F : A9 BB       |             lda   #$BB           
+   50 |  1 stack.s     50 | Code        | 11 |         |    3 | 00/8021 : 8D 9A 80    |             sta   tempo          
+   51 |  1 stack.s     51 | Code        | 11 |         |    2 | 00/8024 : A9 CC       |             lda   #$CC           
+   52 |  1 stack.s     52 | Code        | 11 |         |    3 | 00/8026 : 8D 9B 80    |             sta   tempo+1        
+   53 |  1 stack.s     53 | Code        | 11 |         |    3 | 00/8029 : 20 45 80    |             jsr   psuh           
+   54 |  1 stack.s     54 | Empty       | 11 |         |    0 | 00/802C               |                                  
+   55 |  1 stack.s     55 | Code        | 11 |         |    2 | 00/802C : A9 EE       |             lda   #$EE           
+   56 |  1 stack.s     56 | Code        | 11 |         |    3 | 00/802E : 8D 9A 80    |             sta   tempo          
+   57 |  1 stack.s     57 | Code        | 11 |         |    2 | 00/8031 : A9 FF       |             lda   #$FF           
+   58 |  1 stack.s     58 | Code        | 11 |         |    3 | 00/8033 : 8D 9B 80    |             sta   tempo+1        
+   59 |  1 stack.s     59 | Code        | 11 |         |    3 | 00/8036 : 20 45 80    |             jsr   psuh           
+   60 |  1 stack.s     60 | Empty       | 11 |         |    0 | 00/8039               |                                  
+   61 |  1 stack.s     61 | Code        | 11 |         |    2 | 00/8039 : A9 00       |             lda   #$00           
+   62 |  1 stack.s     62 | Code        | 11 |         |    3 | 00/803B : 8D 9A 80    |             sta   tempo          
+   63 |  1 stack.s     63 | Code        | 11 |         |    3 | 00/803E : 8D 9B 80    |             sta   tempo+1        
+   64 |  1 stack.s     64 | Code        | 11 |         |    3 | 00/8041 : 20 69 80    |             jsr   pop            
+   65 |  1 stack.s     65 | Empty       | 11 |         |    0 | 00/8044               |                                  
+   66 |  1 stack.s     66 | Code        | 11 |         |    1 | 00/8044 : 60          |             rts                  
+   67 |  1 stack.s     67 | Comment     | 11 |         |    0 | 00/8045               | *
+   68 |  1 stack.s     68 | Comment     | 11 |         |    0 | 00/8045               | ; push a 16 bits value on stack
+   69 |  1 stack.s     69 | Code        | 11 |         |    1 | 00/8045 : EA          | psuh        nop                  
+   70 |  1 stack.s     70 | Code        | 11 |         |    2 | 00/8046 : A0 00       |             ldy   #$00           
+   71 |  1 stack.s     71 | Code        | 11 |         |    3 | 00/8048 : AD 9A 80    |             lda   tempo          ; get value from tempo (lo)
+   72 |  1 stack.s     72 | Code        | 11 |         |    2 | 00/804B : 91 06       |             sta   ({$06}),y      ; drop on stack
+   73 |  1 stack.s     73 | Code        | 11 |         |    1 | 00/804D : C8          |             iny                  
+   74 |  1 stack.s     74 | Code        | 11 |         |    3 | 00/804E : AD 9B 80    |             lda   tempo+1        ; get value from tempo (hi)
+   75 |  1 stack.s     75 | Code        | 11 |         |    2 | 00/8051 : 91 06       |             sta   ({$06}),y      ; drop on stack
+   76 |  1 stack.s     76 | Comment     | 11 |         |    0 | 00/8053               | *
+   77 |  1 stack.s     77 | Code        | 11 |         |    3 | 00/8053 : EE 96 80    |             inc   scount         ; scount++
+   78 |  1 stack.s     78 | Code        | 11 |         |    2 | 00/8056 : D0 03       |             bne   doptr          
+   79 |  1 stack.s     79 | Code        | 11 |         |    3 | 00/8058 : EE 97 80    |             inc   scount+1       
+   80 |  1 stack.s     80 | Comment     | 11 |         |    0 | 00/805B               | * 
+   81 |  1 stack.s     81 | Code        | 11 |         |    2 | 00/805B : A5 06       | doptr       lda   {$06}          ; ptr + 2
+   82 |  1 stack.s     82 | Code        | 11 |         |    1 | 00/805D : 18          |             clc                  
+   83 |  1 stack.s     83 | Code        | 11 |         |    2 | 00/805E : 69 02       |             adc   #$02           
+   84 |  1 stack.s     84 | Code        | 11 |         |    2 | 00/8060 : 85 06       |             sta   {$06}          
+   85 |  1 stack.s     85 | Code        | 11 |         |    2 | 00/8062 : A5 07       |             lda   {$06}+1        
+   86 |  1 stack.s     86 | Code        | 11 |         |    2 | 00/8064 : 69 00       |             adc   #$00           
+   87 |  1 stack.s     87 | Code        | 11 |         |    2 | 00/8066 : 85 07       |             sta   {$06}+1        
+   88 |  1 stack.s     88 | Code        | 11 |         |    1 | 00/8068 : 60          | epush       rts                  
+   89 |  1 stack.s     89 | Comment     | 11 |         |    0 | 00/8069               | *
+   90 |  1 stack.s     90 | Comment     | 11 |         |    0 | 00/8069               | ; pop a 16 bits value from stack 
+   91 |  1 stack.s     91 | Code        | 11 |         |    1 | 00/8069 : EA          | pop         nop                  ; pop a 16 bits value from stack
+   92 |  1 stack.s     92 | Code        | 11 |         |    2 | 00/806A : A5 06       |             lda   {$06}          ; set ptr to ptr-2
+   93 |  1 stack.s     93 | Code        | 11 |         |    1 | 00/806C : 38          |             sec                  
+   94 |  1 stack.s     94 | Code        | 11 |         |    2 | 00/806D : E9 02       |             sbc   #$02           
+   95 |  1 stack.s     95 | Code        | 11 |         |    2 | 00/806F : 85 06       |             sta   {$06}          
+   96 |  1 stack.s     96 | Code        | 11 |         |    2 | 00/8071 : A5 07       |             lda   {$06}+1        
+   97 |  1 stack.s     97 | Code        | 11 |         |    2 | 00/8073 : E9 00       |             sbc   #$00           
+   98 |  1 stack.s     98 | Code        | 11 |         |    2 | 00/8075 : 85 07       |             sta   {$06}+1        
+   99 |  1 stack.s     99 | Comment     | 11 |         |    0 | 00/8077               | *
+  100 |  1 stack.s    100 | Code        | 11 |         |    2 | 00/8077 : A0 00       |             ldy   #$00           ; get value
+  101 |  1 stack.s    101 | Code        | 11 |         |    2 | 00/8079 : B1 06       |             lda   ({$06}),y      
+  102 |  1 stack.s    102 | Code        | 11 |         |    3 | 00/807B : 8D 9A 80    |             sta   tempo          ; to tempo
+  103 |  1 stack.s    103 | Code        | 11 |         |    1 | 00/807E : C8          |             iny                  
+  104 |  1 stack.s    104 | Code        | 11 |         |    2 | 00/807F : B1 06       |             lda   ({$06}),y      
+  105 |  1 stack.s    105 | Code        | 11 |         |    3 | 00/8081 : 8D 9B 80    |             sta   tempo+1        
+  106 |  1 stack.s    106 | Comment     | 11 |         |    0 | 00/8084               | *
+  107 |  1 stack.s    107 | Code        | 11 |         |    3 | 00/8084 : AD 96 80    |             lda   scount         ; scount--
+  108 |  1 stack.s    108 | Code        | 11 |         |    1 | 00/8087 : 38          |             sec                  
+  109 |  1 stack.s    109 | Code        | 11 |         |    2 | 00/8088 : E9 01       |             sbc   #$01           
+  110 |  1 stack.s    110 | Code        | 11 |         |    3 | 00/808A : 8D 96 80    |             sta   scount         
+  111 |  1 stack.s    111 | Code        | 11 |         |    3 | 00/808D : AD 97 80    |             lda   scount+1       
+  112 |  1 stack.s    112 | Code        | 11 |         |    2 | 00/8090 : E9 00       |             sbc   #$00           
+  113 |  1 stack.s    113 | Code        | 11 |         |    3 | 00/8092 : 8D 97 80    |             sta   scount+1       
+  114 |  1 stack.s    114 | Code        | 11 |         |    1 | 00/8095 : 60          |             rts                  
+  115 |  1 stack.s    115 | Empty       | 11 |         |    0 | 00/8096               |                                  
+  116 |  1 stack.s    116 | Empty       | 11 |         |    0 | 00/8096               |                                  
+  117 |  1 stack.s    117 | Comment     | 11 |         |    0 | 00/8096               | * * * * DATA * * * *
+  118 |  1 stack.s    118 | Data        | 11 |         |    2 | 00/8096 : 00 00       | scount      hex   0000           
+  119 |  1 stack.s    119 | Data        | 11 |         |    2 | 00/8098 : 00 60       | sbase       hex   0060           ; $6000
+  120 |  1 stack.s    120 | Data        | 11 |         |    2 | 00/809A : 00 00       | tempo       hex   0000           
+  121 |  1 stack.s    121 | Empty       | 11 |         |    0 | 00/809C               |                                  
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
