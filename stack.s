@@ -18,16 +18,16 @@ wait    equ $FCA8
 *
 * page 0
 *
-cv        equ $25
-ch        equ $24 
-wndlft    equ $20
-wndwdth   equ $21
-wndtop    equ $22
-wndbtm    equ $23 
-prompt    equ $33
+cv      equ $25
+ch      equ $24 
+wndlft  equ $20
+wndwdth equ $21
+wndtop  equ $22
+wndbtm  equ $23 
+prompt  equ $33
 *
 ptr     equ $06
-ptr2     equ $08
+ptr2    equ $08
 *
 
         org $8000
@@ -105,12 +105,9 @@ pop     nop             ; pop a 16 bits value from stack
         sta tempo+1
 *
         lda scount      ; scount--
-        sec
-        sbc #$01
-        sta scount
-        lda scount+1
-        sbc #$00
-        sta scount+1
+        bne nodec
+        dec scount+1
+nodec   dec scount
         rts
 
 
