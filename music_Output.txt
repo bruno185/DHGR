@@ -1,0 +1,117 @@
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+ Line | # File       Line | Line Type   | MX |  Reloc  | Size | Address   Object Code |  Source Code                                                      
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+    1 |  1 music.s      1 | Comment     | 11 |         |    0 | 00/8000               | * http://eightbitsoundandfury.ld8.org/programming.html
+    2 |  1 music.s      2 | Comment     | 11 |         |    0 | 00/8000               | * Attention les note du tableau sont décalées :
+    3 |  1 music.s      3 | Comment     | 11 |         |    0 | 00/8000               | * le C est un G, le D est un A etc.
+    4 |  1 music.s      4 | Empty       | 11 |         |    0 | 00/8000               |                                  
+    5 |  1 music.s      5 | Directive   | 11 |         |    0 | 00/8000               |             put   const.s        
+    6 |  2 const.s      1 | Comment     | 11 |         |    0 | 00/8000               | * ROM routines
+    7 |  2 const.s      2 | Directive   | 11 |         |    0 | 00/8000               |             lst   off            
+    8 |  2 const.s      3 | Comment     | 11 |         |    0 | 00/8000               | *
+    9 |  2 const.s      4 | Equivalence | 11 |         |    0 | 00/8000               | home        equ   $FC58          
+   10 |  2 const.s      5 | Equivalence | 11 |         |    0 | 00/8000               | text        equ   $FB2F          
+   11 |  2 const.s      6 | Equivalence | 11 |         |    0 | 00/8000               | cout        equ   $FDED          
+   12 |  2 const.s      7 | Equivalence | 11 |         |    0 | 00/8000               | vtab        equ   $FC22          
+   13 |  2 const.s      8 | Equivalence | 11 |         |    0 | 00/8000               | getln       equ   $FD6A          
+   14 |  2 const.s      9 | Equivalence | 11 |         |    0 | 00/8000               | bascalc     equ   $FBC1          
+   15 |  2 const.s     10 | Equivalence | 11 |         |    0 | 00/8000               | cr          equ   $FD8E          ; print carriage return
+   16 |  2 const.s     11 | Equivalence | 11 |         |    0 | 00/8000               | clreop      equ   $FC42          ; clear from cursor to end of page
+   17 |  2 const.s     12 | Equivalence | 11 |         |    0 | 00/8000               | clreol      equ   $FC9C          ; clear from cursor to end of line
+   18 |  2 const.s     13 | Equivalence | 11 |         |    0 | 00/8000               | xtohex      equ   $F944          
+   19 |  2 const.s     14 | Equivalence | 11 |         |    0 | 00/8000               | rdkey       equ   $FD0C          ; wait for keypress
+   20 |  2 const.s     15 | Equivalence | 11 |         |    0 | 00/8000               | auxmov      equ   $C311          
+   21 |  2 const.s     16 | Equivalence | 11 |         |    0 | 00/8000               | xfer        equ   $C314          
+   22 |  2 const.s     17 | Equivalence | 11 |         |    0 | 00/8000               | wait        equ   $FCA8          
+   23 |  2 const.s     18 | Comment     | 11 |         |    0 | 00/8000               | *
+   24 |  2 const.s     19 | Equivalence | 11 |         |    0 | 00/8000               | bell        equ   $C030          
+   25 |  2 const.s     20 | Comment     | 11 |         |    0 | 00/8000               | * page 0
+   26 |  2 const.s     21 | Comment     | 11 |         |    0 | 00/8000               | *
+   27 |  2 const.s     22 | Equivalence | 11 |         |    0 | 00/8000               | cv          equ   $25            
+   28 |  2 const.s     23 | Equivalence | 11 |         |    0 | 00/8000               | ch          equ   $24            
+   29 |  2 const.s     24 | Equivalence | 11 |         |    0 | 00/8000               | wndlft      equ   $20            
+   30 |  2 const.s     25 | Equivalence | 11 |         |    0 | 00/8000               | wndwdth     equ   $21            
+   31 |  2 const.s     26 | Equivalence | 11 |         |    0 | 00/8000               | wndtop      equ   $22            
+   32 |  2 const.s     27 | Equivalence | 11 |         |    0 | 00/8000               | wndbtm      equ   $23            
+   33 |  2 const.s     28 | Equivalence | 11 |         |    0 | 00/8000               | prompt      equ   $33            
+   34 |  2 const.s     29 | Comment     | 11 |         |    0 | 00/8000               | *
+   35 |  2 const.s     30 | Equivalence | 11 |         |    0 | 00/8000               | ptr         equ   $06            
+   36 |  2 const.s     31 | Equivalence | 11 |         |    0 | 00/8000               | ptr2        equ   $08            
+   37 |  2 const.s     32 | Comment     | 11 |         |    0 | 00/8000               | *
+   38 |  1 music.s      6 | Empty       | 11 |         |    0 | 00/8000               |                                  
+   39 |  1 music.s      7 | Directive   | 11 |         |    0 | 00/8000               |             DO    0              
+   40 |  1 music.s     13 | Directive   | 11 |         |    0 | 00/8000               |             FIN                  
+   41 |  1 music.s     14 | Empty       | 11 |         |    0 | 00/8000               |                                  
+   42 |  1 music.s     15 | Directive   | 11 |         |    0 | 00/8000               |             org   $8000          
+   43 |  1 music.s     16 | Empty       | 11 |         |    0 | 00/8000               |                                  
+   44 |  1 music.s     17 | Code        | 11 |         |    3 | 00/8000 : 4C 07 80    |             jmp   main           
+   45 |  1 music.s     18 | Data        | 11 |         |    1 | 00/8003 : 00          | freq        hex   00             ; frequency
+   46 |  1 music.s     19 | Data        | 11 |         |    1 | 00/8004 : 00          | dura        hex   00             ; duration
+   47 |  1 music.s     20 | Data        | 11 |         |    1 | 00/8005 : 00          | dummy       hex   00             
+   48 |  1 music.s     21 | Data        | 11 |         |    1 | 00/8006 : 00          | savx        hex   00             ; to save x register
+   49 |  1 music.s     22 | Empty       | 11 |         |    0 | 00/8007               |                                  
+   50 |  1 music.s     23 | Empty       | 11 |         |    0 | 00/8007               | main                             
+   51 |  1 music.s     24 | Code        | 11 |         |    2 | 00/8007 : A2 00       |             ldx   #$00           
+   52 |  1 music.s     25 | Code        | 11 |         |    3 | 00/8009 : BD 5C 80    | donote      lda   music,x        ; get freqency
+   53 |  1 music.s     26 | Code        | 11 |         |    2 | 00/800C : F0 23       |             beq   end            ; flag for end of tune
+   54 |  1 music.s     27 | Code        | 11 |         |    3 | 00/800E : 8D 03 80    |             sta   freq           
+   55 |  1 music.s     28 | Code        | 11 |         |    1 | 00/8011 : E8          |             inx                  
+   56 |  1 music.s     29 | Code        | 11 |         |    3 | 00/8012 : BD 5C 80    |             lda   music,x        ; get duration
+   57 |  1 music.s     30 | Code        | 11 |         |    3 | 00/8015 : 8D 04 80    |             sta   dura           
+   58 |  1 music.s     31 | Code        | 11 |         |    1 | 00/8018 : E8          |             inx                  
+   59 |  1 music.s     32 | Code        | 11 |         |    3 | 00/8019 : 8E 06 80    |             stx   savx           ; save x
+   60 |  1 music.s     33 | Code        | 11 |         |    3 | 00/801C : BD 5C 80    |             lda   music,x        ; get flag
+   61 |  1 music.s     34 | Code        | 11 |         |    2 | 00/801F : F0 06       |             beq   np             ; 0 : no play
+   62 |  1 music.s     35 | Code        | 11 |         |    3 | 00/8021 : 20 32 80    |             jsr   play           ; <>0 : play
+   63 |  1 music.s     36 | Code        | 11 |         |    3 | 00/8024 : 4C 2A 80    |             jmp   nextnot        
+   64 |  1 music.s     37 | Code        | 11 |         |    3 | 00/8027 : 20 47 80    | np          jsr   noplay         
+   65 |  1 music.s     38 | Code        | 11 |         |    3 | 00/802A : AE 06 80    | nextnot     ldx   savx           ; restore X
+   66 |  1 music.s     39 | Code        | 11 |         |    1 | 00/802D : E8          |             inx                  ; prepare for next note
+   67 |  1 music.s     40 | Code        | 11 |         |    3 | 00/802E : 4C 09 80    |             jmp   donote         ; loop
+   68 |  1 music.s     41 | Code        | 11 |         |    1 | 00/8031 : 60          | end         rts                  
+   69 |  1 music.s     42 | Empty       | 11 |         |    0 | 00/8032               |                                  
+   70 |  1 music.s     43 | Empty       | 11 |         |    0 | 00/8032               |                                  
+   71 |  1 music.s     44 | Empty       | 11 |         |    0 | 00/8032               |                                  
+   72 |  1 music.s     45 | Code        | 11 |         |    3 | 00/8032 : AD 30 C0    | play        lda   {$C030}        ; clic
+   73 |  1 music.s     46 | Code        | 11 |         |    1 | 00/8035 : 88          | loop1       dey                  ; y loop, for duration
+   74 |  1 music.s     47 | Code        | 11 |         |    2 | 00/8036 : D0 05       |             bne   suite1         
+   75 |  1 music.s     48 | Code        | 11 |         |    3 | 00/8038 : CE 04 80    |             dec   dura           ;
+   76 |  1 music.s     49 | Code        | 11 |         |    2 | 00/803B : F0 09       |             beq   endplay        ; exit when duration=0
+   77 |  1 music.s     50 | Code        | 11 |         |    1 | 00/803D : CA          | suite1      dex                  ; x loop for frequency
+   78 |  1 music.s     51 | Code        | 11 |         |    2 | 00/803E : D0 F5       |             bne   loop1          ; clic when x = 0
+   79 |  1 music.s     52 | Code        | 11 |         |    3 | 00/8040 : AE 03 80    |             ldx   freq           ; reload frequency
+   80 |  1 music.s     53 | Code        | 11 |         |    3 | 00/8043 : 4C 32 80    |             jmp   play           ; loop
+   81 |  1 music.s     54 | Code        | 11 |         |    1 | 00/8046 : 60          | endplay     rts                  
+   82 |  1 music.s     55 | Empty       | 11 |         |    0 | 00/8047               |                                  
+   83 |  1 music.s     56 | Code        | 11 |         |    3 | 00/8047 : AD 05 80    | noplay      lda   dummy          ; same but no bell
+   84 |  1 music.s     57 | Code        | 11 |         |    1 | 00/804A : 88          | loop2       dey                  
+   85 |  1 music.s     58 | Code        | 11 |         |    2 | 00/804B : D0 F0       |             bne   suite1         
+   86 |  1 music.s     59 | Code        | 11 |         |    3 | 00/804D : CE 04 80    |             dec   dura           
+   87 |  1 music.s     60 | Code        | 11 |         |    2 | 00/8050 : F0 F4       |             beq   endplay        
+   88 |  1 music.s     61 | Code        | 11 |         |    1 | 00/8052 : CA          | suite2      dex                  
+   89 |  1 music.s     62 | Code        | 11 |         |    2 | 00/8053 : D0 E0       |             bne   loop1          
+   90 |  1 music.s     63 | Code        | 11 |         |    3 | 00/8055 : AE 03 80    |             ldx   freq           
+   91 |  1 music.s     64 | Code        | 11 |         |    3 | 00/8058 : 4C 32 80    |             jmp   play           
+   92 |  1 music.s     65 | Code        | 11 |         |    1 | 00/805B : 60          | endnopl     rts                  
+   93 |  1 music.s     66 | Empty       | 11 |         |    0 | 00/805C               |                                  
+   94 |  1 music.s     67 | Comment     | 11 |         |    0 | 00/805C               | * 3 bytes for each note :
+   95 |  1 music.s     68 | Comment     | 11 |         |    0 | 00/805C               | * frequency, duration, flag 
+   96 |  1 music.s     69 | Comment     | 11 |         |    0 | 00/805C               | * flag : 01 ==> play ; 00 ==> no play (silence)
+   97 |  1 music.s     70 | Data        | 11 |         |    3 | 00/805C : 60 40 01    | music       hex   604001         ; C
+   98 |  1 music.s     71 | Macro       | 11 |         |    0 | 00/805F               |             nonote                 
+   99 |  1 music.s     71 | Data        | 11 |         |    3 | 00/805F : 01 01 00    |             hex   010100         
+  100 |  1 music.s     72 | Data        | 11 |         |    3 | 00/8062 : 55 40 01    |             hex   554001         ; D
+  101 |  1 music.s     73 | Macro       | 11 |         |    0 | 00/8065               |             nonote                 
+  102 |  1 music.s     73 | Data        | 11 |         |    3 | 00/8065 : 01 01 00    |             hex   010100         
+  103 |  1 music.s     74 | Data        | 11 |         |    3 | 00/8068 : 4C 80 01    |             hex   4C8001         ; E
+  104 |  1 music.s     75 | Macro       | 11 |         |    0 | 00/806B               |             nonote                 
+  105 |  1 music.s     75 | Data        | 11 |         |    3 | 00/806B : 01 01 00    |             hex   010100         
+  106 |  1 music.s     76 | Data        | 11 |         |    3 | 00/806E : 55 80 01    |             hex   558001         ; D
+  107 |  1 music.s     77 | Macro       | 11 |         |    0 | 00/8071               |             nonote                 
+  108 |  1 music.s     77 | Data        | 11 |         |    3 | 00/8071 : 01 01 00    |             hex   010100         
+  109 |  1 music.s     78 | Data        | 11 |         |    3 | 00/8074 : 60 80 01    |             hex   608001         ; C
+  110 |  1 music.s     79 | Macro       | 11 |         |    0 | 00/8077               |             nonote                 
+  111 |  1 music.s     79 | Data        | 11 |         |    3 | 00/8077 : 01 01 00    |             hex   010100         
+  112 |  1 music.s     80 | Data        | 11 |         |    1 | 00/807A : 00          |             hex   00             
+  113 |  1 music.s     81 | Empty       | 11 |         |    0 | 00/807B               |                                  
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------

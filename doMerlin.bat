@@ -1,7 +1,7 @@
 @echo off
 if %errorlevel% neq 0 exit /b %errorlevel%
 echo --------------- Variables ---------------
-Set PRG=stack
+Set PRG=music
 Set ProjectFolder=.
 
 Set MyAppleFolder=F:\Bruno\Dev\AppleWin
