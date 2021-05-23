@@ -1,0 +1,94 @@
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+ Line | # File       Line | Line Type   | MX |  Reloc  | Size | Address   Object Code |  Source Code                                                      
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
+    1 |  1   sup.s      1 | Directive   | 11 |         |    0 | 00/8000               |             put     const          
+    2 |  2 const.s      1 | Comment     | 11 |         |    0 | 00/8000               | * ROM routines
+    3 |  2 const.s      2 | Directive   | 11 |         |    0 | 00/8000               |             lst     off            
+    4 |  2 const.s      3 | Comment     | 11 |         |    0 | 00/8000               | *
+    5 |  2 const.s      4 | Equivalence | 11 |         |    0 | 00/8000               | home        equ     $FC58          
+    6 |  2 const.s      5 | Equivalence | 11 |         |    0 | 00/8000               | text        equ     $FB2F          
+    7 |  2 const.s      6 | Equivalence | 11 |         |    0 | 00/8000               | cout        equ     $FDED          
+    8 |  2 const.s      7 | Equivalence | 11 |         |    0 | 00/8000               | vtab        equ     $FC22          
+    9 |  2 const.s      8 | Equivalence | 11 |         |    0 | 00/8000               | getln       equ     $FD6A          
+   10 |  2 const.s      9 | Equivalence | 11 |         |    0 | 00/8000               | bascalc     equ     $FBC1          
+   11 |  2 const.s     10 | Equivalence | 11 |         |    0 | 00/8000               | cr          equ     $FD8E          ; print carriage return
+   12 |  2 const.s     11 | Equivalence | 11 |         |    0 | 00/8000               | clreop      equ     $FC42          ; clear from cursor to end of page
+   13 |  2 const.s     12 | Equivalence | 11 |         |    0 | 00/8000               | clreol      equ     $FC9C          ; clear from cursor to end of line
+   14 |  2 const.s     13 | Equivalence | 11 |         |    0 | 00/8000               | xtohex      equ     $F944          
+   15 |  2 const.s     14 | Equivalence | 11 |         |    0 | 00/8000               | rdkey       equ     $FD0C          ; wait for keypress
+   16 |  2 const.s     15 | Equivalence | 11 |         |    0 | 00/8000               | auxmov      equ     $C311          
+   17 |  2 const.s     16 | Equivalence | 11 |         |    0 | 00/8000               | xfer        equ     $C314          
+   18 |  2 const.s     17 | Equivalence | 11 |         |    0 | 00/8000               | wait        equ     $FCA8          
+   19 |  2 const.s     18 | Comment     | 11 |         |    0 | 00/8000               | *
+   20 |  2 const.s     19 | Equivalence | 11 |         |    0 | 00/8000               | bell        equ     $C030          
+   21 |  2 const.s     20 | Comment     | 11 |         |    0 | 00/8000               | * page 0
+   22 |  2 const.s     21 | Comment     | 11 |         |    0 | 00/8000               | *
+   23 |  2 const.s     22 | Equivalence | 11 |         |    0 | 00/8000               | cv          equ     $25            
+   24 |  2 const.s     23 | Equivalence | 11 |         |    0 | 00/8000               | ch          equ     $24            
+   25 |  2 const.s     24 | Equivalence | 11 |         |    0 | 00/8000               | wndlft      equ     $20            
+   26 |  2 const.s     25 | Equivalence | 11 |         |    0 | 00/8000               | wndwdth     equ     $21            
+   27 |  2 const.s     26 | Equivalence | 11 |         |    0 | 00/8000               | wndtop      equ     $22            
+   28 |  2 const.s     27 | Equivalence | 11 |         |    0 | 00/8000               | wndbtm      equ     $23            
+   29 |  2 const.s     28 | Equivalence | 11 |         |    0 | 00/8000               | prompt      equ     $33            
+   30 |  2 const.s     29 | Comment     | 11 |         |    0 | 00/8000               | *
+   31 |  2 const.s     30 | Equivalence | 11 |         |    0 | 00/8000               | ptr         equ     $06            
+   32 |  2 const.s     31 | Equivalence | 11 |         |    0 | 00/8000               | ptr2        equ     $08            
+   33 |  2 const.s     32 | Comment     | 11 |         |    0 | 00/8000               | *
+   34 |  1   sup.s      2 | Empty       | 11 |         |    0 | 00/8000               |                                    
+   35 |  1   sup.s      3 | Directive   | 11 |         |    0 | 00/8000               |             DO      0              
+   36 |  1   sup.s     30 | Directive   | 11 |         |    0 | 00/8000               |             FIN                    
+   37 |  1   sup.s     31 | Empty       | 11 |         |    0 | 00/8000               |                                    
+   38 |  1   sup.s     32 | Directive   | 11 |         |    0 | 00/8000               |             org     $8000          
+   39 |  1   sup.s     33 | Empty       | 11 |         |    0 | 00/8000               |                                    
+   40 |  1   sup.s     34 | Macro       | 11 |         |    0 | 00/8000               |             sup     un;deux        
+   41 |  1   sup.s     34 | Empty       | 11 |         |    0 | 00/8000               |                                    
+   42 |  1   sup.s     34 | Code        | 11 |         |    3 | 00/8000 : AD 61 80    |             lda     un+1           
+   43 |  1   sup.s     34 | Code        | 11 |         |    3 | 00/8003 : CD 63 80    |             cmp     deux+1         
+   44 |  1   sup.s     34 | Code        | 11 |         |    2 | 00/8006 : F0 03       |             beq     ozunid_1       ; hi(A) > hi (B) see lo
+   45 |  1   sup.s     34 | Code        | 11 |         |    3 | 00/8008 : 4C 14 80    |             jmp     ozunid_2       ; if A > B : C = 1, if A < B : C = 0
+   46 |  1   sup.s     34 | Code        | 11 |         |    3 | 00/800B : AD 60 80    | ozunid_1    lda     un             
+   47 |  1   sup.s     34 | Code        | 11 |         |    3 | 00/800E : CD 62 80    |             cmp     deux           
+   48 |  1   sup.s     34 | Code        | 11 |         |    2 | 00/8011 : D0 01       |             bne     ozunid_2       ; A = B : C= 0; else C is set accordingly
+   49 |  1   sup.s     34 | Code        | 11 |         |    1 | 00/8013 : 18          |             clc                    
+   50 |  1   sup.s     34 | Empty       | 11 |         |    0 | 00/8014               | ozunid_2                           
+   51 |  1   sup.s     35 | Code        | 11 |         |    1 | 00/8014 : 08          |             php                    
+   52 |  1   sup.s     36 | Macro       | 11 |         |    0 | 00/8015               |             printm  un             
+   53 |  1   sup.s     36 | Empty       | 11 |         |    0 | 00/8015               |                                    
+   54 |  1   sup.s     36 | Code        | 11 |         |    2 | 00/8015 : A9 A4       |             lda     #"$"           
+   55 |  1   sup.s     36 | Code        | 11 |         |    3 | 00/8017 : 20 ED FD    |             jsr     {$FDED}        
+   56 |  1   sup.s     36 | Code        | 11 |         |    3 | 00/801A : AE 61 80    |             ldx     un+1           
+   57 |  1   sup.s     36 | Code        | 11 |         |    3 | 00/801D : 20 44 F9    |             jsr     {$F944}        
+   58 |  1   sup.s     36 | Code        | 11 |         |    3 | 00/8020 : AE 60 80    |             ldx     un             
+   59 |  1   sup.s     36 | Code        | 11 |         |    3 | 00/8023 : 20 44 F9    |             jsr     {$F944}        
+   60 |  1   sup.s     36 | Code        | 11 |         |    2 | 00/8026 : A9 A0       |             lda     #$A0           
+   61 |  1   sup.s     36 | Code        | 11 |         |    3 | 00/8028 : 20 ED FD    |             jsr     {$FDED}        
+   62 |  1   sup.s     37 | Code        | 11 |         |    1 | 00/802B : 28          |             plp                    
+   63 |  1   sup.s     38 | Code        | 11 |         |    2 | 00/802C : 90 09       |             bcc     dono           
+   64 |  1   sup.s     39 | Code        | 11 |         |    3 | 00/802E : AD 64 80    |             lda     yes            
+   65 |  1   sup.s     40 | Code        | 11 |         |    3 | 00/8031 : 20 ED FD    |             jsr     {$FDED}        
+   66 |  1   sup.s     41 | Code        | 11 |         |    3 | 00/8034 : 4C 43 80    |             jmp     exit           
+   67 |  1   sup.s     42 | Code        | 11 |         |    3 | 00/8037 : AD 65 80    | dono        lda     no             
+   68 |  1   sup.s     43 | Code        | 11 |         |    3 | 00/803A : 20 ED FD    |             jsr     {$FDED}        
+   69 |  1   sup.s     44 | Code        | 11 |         |    3 | 00/803D : AD 66 80    |             lda     no+1           
+   70 |  1   sup.s     45 | Code        | 11 |         |    3 | 00/8040 : 20 ED FD    |             jsr     {$FDED}        
+   71 |  1   sup.s     46 | Empty       | 11 |         |    0 | 00/8043               |                                    
+   72 |  1   sup.s     47 | Code        | 11 |         |    3 | 00/8043 : AD 67 80    | exit        lda     space          
+   73 |  1   sup.s     48 | Code        | 11 |         |    3 | 00/8046 : 20 ED FD    |             jsr     {$FDED}        
+   74 |  1   sup.s     49 | Macro       | 11 |         |    0 | 00/8049               |             printm  deux           
+   75 |  1   sup.s     49 | Empty       | 11 |         |    0 | 00/8049               |                                    
+   76 |  1   sup.s     49 | Code        | 11 |         |    2 | 00/8049 : A9 A4       |             lda     #"$"           
+   77 |  1   sup.s     49 | Code        | 11 |         |    3 | 00/804B : 20 ED FD    |             jsr     {$FDED}        
+   78 |  1   sup.s     49 | Code        | 11 |         |    3 | 00/804E : AE 63 80    |             ldx     deux+1         
+   79 |  1   sup.s     49 | Code        | 11 |         |    3 | 00/8051 : 20 44 F9    |             jsr     {$F944}        
+   80 |  1   sup.s     49 | Code        | 11 |         |    3 | 00/8054 : AE 62 80    |             ldx     deux           
+   81 |  1   sup.s     49 | Code        | 11 |         |    3 | 00/8057 : 20 44 F9    |             jsr     {$F944}        
+   82 |  1   sup.s     49 | Code        | 11 |         |    2 | 00/805A : A9 A0       |             lda     #$A0           
+   83 |  1   sup.s     49 | Code        | 11 |         |    3 | 00/805C : 20 ED FD    |             jsr     {$FDED}        
+   84 |  1   sup.s     50 | Code        | 11 |         |    1 | 00/805F : 60          |             rts                    
+   85 |  1   sup.s     51 | Empty       | 11 |         |    0 | 00/8060               |                                    
+   86 |  1   sup.s     52 | Data        | 11 |         |    2 | 00/8060 : 01 03       | un          hex     0103           
+   87 |  1   sup.s     53 | Data        | 11 |         |    2 | 00/8062 : 0A 02       | deux        hex     0A02           
+   88 |  1   sup.s     54 | Data        | 11 |         |    1 | 00/8064 : BE          | yes         asc     ">"            
+   89 |  1   sup.s     55 | Data        | 11 |         |    2 | 00/8065 : BC BD       | no          asc     "<="           
+   90 |  1   sup.s     56 | Data        | 11 |         |    1 | 00/8067 : A0          | space       asc     " "            
+------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
