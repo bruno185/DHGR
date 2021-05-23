@@ -86,8 +86,8 @@
    83 |  1   sup.s     49 | Code        | 11 |         |    3 | 00/805C : 20 ED FD    |             jsr     {$FDED}        
    84 |  1   sup.s     50 | Code        | 11 |         |    1 | 00/805F : 60          |             rts                    
    85 |  1   sup.s     51 | Empty       | 11 |         |    0 | 00/8060               |                                    
-   86 |  1   sup.s     52 | Data        | 11 |         |    2 | 00/8060 : 01 03       | un          hex     0103           
-   87 |  1   sup.s     53 | Data        | 11 |         |    2 | 00/8062 : 0A 02       | deux        hex     0A02           
+   86 |  1   sup.s     52 | Data        | 11 |         |    2 | 00/8060 : FE FF       | un          hex     FEFF           
+   87 |  1   sup.s     53 | Data        | 11 |         |    2 | 00/8062 : FF FF       | deux        hex     FFFF           
    88 |  1   sup.s     54 | Data        | 11 |         |    1 | 00/8064 : BE          | yes         asc     ">"            
    89 |  1   sup.s     55 | Data        | 11 |         |    2 | 00/8065 : BC BD       | no          asc     "<="           
    90 |  1   sup.s     56 | Data        | 11 |         |    1 | 00/8067 : A0          | space       asc     " "            

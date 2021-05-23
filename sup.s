@@ -49,8 +49,8 @@ exit    lda space
         printm deux
         rts
 
-un      hex 0103
-deux    hex 0A02
+un      hex FEFF
+deux    hex FFFF
 yes     asc ">"
 no      asc "<="
 space   asc " "
