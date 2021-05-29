@@ -201,8 +201,8 @@
   198 |  1   sup.s    132 | Code        | 11 |         |    3 | 00/8140 : 20 8E FD    |             jsr     {$FD8E}        
   199 |  1   sup.s    133 | Code        | 11 |         |    1 | 00/8143 : 60          |             rts                    
   200 |  1   sup.s    134 | Empty       | 11 |         |    0 | 00/8144               |                                    
-  201 |  1   sup.s    135 | Data        | 11 |         |    2 | 00/8144 : 01 00       | un          hex     0100           
-  202 |  1   sup.s    136 | Data        | 11 |         |    2 | 00/8146 : FF FE       | deux        hex     FFFE           
+  201 |  1   sup.s    135 | Data        | 11 |         |    2 | 00/8144 : 03 00       | un          hex     0300           
+  202 |  1   sup.s    136 | Data        | 11 |         |    2 | 00/8146 : FD FF       | deux        hex     FDFF           
   203 |  1   sup.s    137 | Data        | 11 |         |    1 | 00/8148 : BE          | yes         asc     ">"            
   204 |  1   sup.s    138 | Data        | 11 |         |    2 | 00/8149 : BC BD       | no          asc     "<="           
   205 |  1   sup.s    139 | Data        | 11 |         |    1 | 00/814B : A0          | space       asc     " "            
