@@ -15,7 +15,7 @@ printm  MAC
         EOM
 
 sup     MAC
-* Set CARRY if ]1 > ]2 (16 bits unsigned values)
+* Set CARRY if ]1 > ]2 (16 bits UNSIGNED values)
         lda ]1+1
         cmp ]2+1
         beq egal        ; hi(A) > hi (B) see lo
@@ -27,7 +27,7 @@ egal    lda ]1
 supe    EOM
 
 supeq   MAC
-* Set CARRY if ]1 >= ]2 (16 unsigned bits values)
+* Set CARRY if ]1 >= ]2 (16 UNSIGNED bits values)
         lda ]1+1
         cmp ]2+1
         beq egal2       ; hi(A) > hi (B) see lo
@@ -38,7 +38,7 @@ supeqe  EOM
 
 *
 ssupeq  MAC
-* Set CARRY if ]1 >= ]2 (16 bits signed values)
+* Set CARRY if ]1 >= ]2 (16 bits SIGNED values)
         sec
         lda ]1+1
         sbc ]2+1
@@ -132,8 +132,8 @@ suite3
         jsr cr
         rts
 
-un      hex 0100
-deux    hex FFFE
+un      hex 0300
+deux    hex FDFF
 yes     asc ">"
 no      asc "<="
 space   asc " "
