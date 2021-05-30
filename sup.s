@@ -64,7 +64,7 @@ more2   sec
 ssupeqe EOM
 
 equal   MAC
-*
+* Set CARRY if ]1 = ]2 (16 bits values)
         lda ]1
         cmp ]2
         bne noteq
