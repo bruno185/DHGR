@@ -63,6 +63,20 @@ less2   bvc less3
 more2   sec
 ssupeqe EOM
 
+equal   MAC
+*
+        lda ]1
+        cmp ]2
+        bne noteq
+        lda ]1+1
+        cmp ]2+1
+        bne noteq
+        jmp okequal
+noteq   clc
+        jmp outeq
+okequal sec
+outeq   EOM
+
         FIN
 
         org $8000
@@ -128,14 +142,33 @@ nocar2  lda cns
 
 suite3
         jsr cr
+        equal un;deux
+        php
+        printm un
+        lda space 
+        jsr cout
+        printm deux
+        lda space 
+        jsr cout
+        plp
+        bcc pnoteq
+        lda eg
+        jsr cout
+        jmp suite4
+pnoteq  lda noteg
+        jsr cout
+
+suite4
         jsr cr
         jsr cr
         rts
 
-un      hex 0300
-deux    hex FDFF
+un      hex 0400
+deux    hex FCFF
 yes     asc ">"
 no      asc "<="
 space   asc " "
 cs      asc "1"
 cns     asc "0"
+eg      asc "="
+noteg   asc "N"

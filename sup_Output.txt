@@ -36,177 +36,226 @@
    33 |  2 const.s     32 | Comment     | 11 |         |    0 | 00/8000               | *
    34 |  1   sup.s      2 | Empty       | 11 |         |    0 | 00/8000               |                                    
    35 |  1   sup.s      3 | Directive   | 11 |         |    0 | 00/8000               |             DO      0              
-   36 |  1   sup.s     66 | Directive   | 11 |         |    0 | 00/8000               |             FIN                    
-   37 |  1   sup.s     67 | Empty       | 11 |         |    0 | 00/8000               |                                    
-   38 |  1   sup.s     68 | Directive   | 11 |         |    0 | 00/8000               |             org     $8000          
-   39 |  1   sup.s     69 | Empty       | 11 |         |    0 | 00/8000               |                                    
-   40 |  1   sup.s     70 | Comment     | 11 |         |    0 | 00/8000               | * Test macro "sup" (C=1 if A>B)
-   41 |  1   sup.s     71 | Macro       | 11 |         |    0 | 00/8000               |             sup     un;deux        
-   42 |  1   sup.s     71 | Empty       | 11 |         |    0 | 00/8000               |                                    
-   43 |  1   sup.s     71 | Code        | 11 |         |    3 | 00/8000 : AD 45 81    |             lda     un+1           
-   44 |  1   sup.s     71 | Code        | 11 |         |    3 | 00/8003 : CD 47 81    |             cmp     deux+1         
-   45 |  1   sup.s     71 | Code        | 11 |         |    2 | 00/8006 : F0 03       |             beq     ozunid_1       ; hi(A) > hi (B) see lo
-   46 |  1   sup.s     71 | Code        | 11 |         |    3 | 00/8008 : 4C 14 80    |             jmp     ozunid_2       ; if A > B : C = 1, if A < B : C = 0
-   47 |  1   sup.s     71 | Code        | 11 |         |    3 | 00/800B : AD 44 81    | ozunid_1    lda     un             
-   48 |  1   sup.s     71 | Code        | 11 |         |    3 | 00/800E : CD 46 81    |             cmp     deux           
-   49 |  1   sup.s     71 | Code        | 11 |         |    2 | 00/8011 : D0 01       |             bne     ozunid_2       ; A = B : C= 0; else C is set accordingly
-   50 |  1   sup.s     71 | Code        | 11 |         |    1 | 00/8013 : 18          |             clc                    
-   51 |  1   sup.s     71 | Empty       | 11 |         |    0 | 00/8014               | ozunid_2                           
-   52 |  1   sup.s     72 | Code        | 11 |         |    1 | 00/8014 : 08          |             php                    
-   53 |  1   sup.s     73 | Macro       | 11 |         |    0 | 00/8015               |             printm  un             
-   54 |  1   sup.s     73 | Empty       | 11 |         |    0 | 00/8015               |                                    
-   55 |  1   sup.s     73 | Code        | 11 |         |    2 | 00/8015 : A9 A4       |             lda     #"$"           
-   56 |  1   sup.s     73 | Code        | 11 |         |    3 | 00/8017 : 20 ED FD    |             jsr     {$FDED}        
-   57 |  1   sup.s     73 | Code        | 11 |         |    3 | 00/801A : AE 45 81    |             ldx     un+1           
-   58 |  1   sup.s     73 | Code        | 11 |         |    3 | 00/801D : 20 44 F9    |             jsr     {$F944}        
-   59 |  1   sup.s     73 | Code        | 11 |         |    3 | 00/8020 : AE 44 81    |             ldx     un             
-   60 |  1   sup.s     73 | Code        | 11 |         |    3 | 00/8023 : 20 44 F9    |             jsr     {$F944}        
-   61 |  1   sup.s     73 | Code        | 11 |         |    2 | 00/8026 : A9 A0       |             lda     #$A0           
-   62 |  1   sup.s     73 | Code        | 11 |         |    3 | 00/8028 : 20 ED FD    |             jsr     {$FDED}        
-   63 |  1   sup.s     74 | Code        | 11 |         |    1 | 00/802B : 28          |             plp                    
-   64 |  1   sup.s     75 | Code        | 11 |         |    2 | 00/802C : 90 09       |             bcc     dono           
-   65 |  1   sup.s     76 | Code        | 11 |         |    3 | 00/802E : AD 48 81    |             lda     yes            
-   66 |  1   sup.s     77 | Code        | 11 |         |    3 | 00/8031 : 20 ED FD    |             jsr     {$FDED}        
-   67 |  1   sup.s     78 | Code        | 11 |         |    3 | 00/8034 : 4C 43 80    |             jmp     suite1         
-   68 |  1   sup.s     79 | Code        | 11 |         |    3 | 00/8037 : AD 49 81    | dono        lda     no             
-   69 |  1   sup.s     80 | Code        | 11 |         |    3 | 00/803A : 20 ED FD    |             jsr     {$FDED}        
-   70 |  1   sup.s     81 | Code        | 11 |         |    3 | 00/803D : AD 4A 81    |             lda     no+1           
-   71 |  1   sup.s     82 | Code        | 11 |         |    3 | 00/8040 : 20 ED FD    |             jsr     {$FDED}        
-   72 |  1   sup.s     83 | Code        | 11 |         |    3 | 00/8043 : AD 4B 81    | suite1      lda     space          
-   73 |  1   sup.s     84 | Code        | 11 |         |    3 | 00/8046 : 20 ED FD    |             jsr     {$FDED}        
-   74 |  1   sup.s     85 | Macro       | 11 |         |    0 | 00/8049               |             printm  deux           
-   75 |  1   sup.s     85 | Empty       | 11 |         |    0 | 00/8049               |                                    
-   76 |  1   sup.s     85 | Code        | 11 |         |    2 | 00/8049 : A9 A4       |             lda     #"$"           
-   77 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/804B : 20 ED FD    |             jsr     {$FDED}        
-   78 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/804E : AE 47 81    |             ldx     deux+1         
-   79 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/8051 : 20 44 F9    |             jsr     {$F944}        
-   80 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/8054 : AE 46 81    |             ldx     deux           
-   81 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/8057 : 20 44 F9    |             jsr     {$F944}        
-   82 |  1   sup.s     85 | Code        | 11 |         |    2 | 00/805A : A9 A0       |             lda     #$A0           
-   83 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/805C : 20 ED FD    |             jsr     {$FDED}        
-   84 |  1   sup.s     86 | Empty       | 11 |         |    0 | 00/805F               |                                    
-   85 |  1   sup.s     87 | Comment     | 11 |         |    0 | 00/805F               | * Test macro "supeq" (C=1 if A>=B)
-   86 |  1   sup.s     88 | Code        | 11 |         |    3 | 00/805F : 20 8E FD    |             jsr     {$FD8E}        
-   87 |  1   sup.s     89 | Macro       | 11 |         |    0 | 00/8062               |             supeq   un;deux        
-   88 |  1   sup.s     89 | Empty       | 11 |         |    0 | 00/8062               |                                    
-   89 |  1   sup.s     89 | Code        | 11 |         |    3 | 00/8062 : AD 45 81    |             lda     un+1           
-   90 |  1   sup.s     89 | Code        | 11 |         |    3 | 00/8065 : CD 47 81    |             cmp     deux+1         
-   91 |  1   sup.s     89 | Code        | 11 |         |    2 | 00/8068 : F0 03       |             beq     ozunid_3       ; hi(A) > hi (B) see lo
-   92 |  1   sup.s     89 | Code        | 11 |         |    3 | 00/806A : 4C 73 80    |             jmp     ozunid_4       ; if A >= B : C = 1, if A < B : C = 0
-   93 |  1   sup.s     89 | Code        | 11 |         |    3 | 00/806D : AD 44 81    | ozunid_3    lda     un             
-   94 |  1   sup.s     89 | Code        | 11 |         |    3 | 00/8070 : CD 46 81    |             cmp     deux           
-   95 |  1   sup.s     89 | Empty       | 11 |         |    0 | 00/8073               | ozunid_4                           
-   96 |  1   sup.s     90 | Code        | 11 |         |    1 | 00/8073 : 08          |             php                    
-   97 |  1   sup.s     91 | Macro       | 11 |         |    0 | 00/8074               |             printm  un             
-   98 |  1   sup.s     91 | Empty       | 11 |         |    0 | 00/8074               |                                    
-   99 |  1   sup.s     91 | Code        | 11 |         |    2 | 00/8074 : A9 A4       |             lda     #"$"           
-  100 |  1   sup.s     91 | Code        | 11 |         |    3 | 00/8076 : 20 ED FD    |             jsr     {$FDED}        
-  101 |  1   sup.s     91 | Code        | 11 |         |    3 | 00/8079 : AE 45 81    |             ldx     un+1           
-  102 |  1   sup.s     91 | Code        | 11 |         |    3 | 00/807C : 20 44 F9    |             jsr     {$F944}        
-  103 |  1   sup.s     91 | Code        | 11 |         |    3 | 00/807F : AE 44 81    |             ldx     un             
-  104 |  1   sup.s     91 | Code        | 11 |         |    3 | 00/8082 : 20 44 F9    |             jsr     {$F944}        
-  105 |  1   sup.s     91 | Code        | 11 |         |    2 | 00/8085 : A9 A0       |             lda     #$A0           
-  106 |  1   sup.s     91 | Code        | 11 |         |    3 | 00/8087 : 20 ED FD    |             jsr     {$FDED}        
-  107 |  1   sup.s     92 | Code        | 11 |         |    3 | 00/808A : AD 4B 81    |             lda     space          
-  108 |  1   sup.s     93 | Code        | 11 |         |    3 | 00/808D : 20 ED FD    |             jsr     {$FDED}        
-  109 |  1   sup.s     94 | Macro       | 11 |         |    0 | 00/8090               |             printm  deux           
-  110 |  1   sup.s     94 | Empty       | 11 |         |    0 | 00/8090               |                                    
-  111 |  1   sup.s     94 | Code        | 11 |         |    2 | 00/8090 : A9 A4       |             lda     #"$"           
-  112 |  1   sup.s     94 | Code        | 11 |         |    3 | 00/8092 : 20 ED FD    |             jsr     {$FDED}        
-  113 |  1   sup.s     94 | Code        | 11 |         |    3 | 00/8095 : AE 47 81    |             ldx     deux+1         
-  114 |  1   sup.s     94 | Code        | 11 |         |    3 | 00/8098 : 20 44 F9    |             jsr     {$F944}        
-  115 |  1   sup.s     94 | Code        | 11 |         |    3 | 00/809B : AE 46 81    |             ldx     deux           
-  116 |  1   sup.s     94 | Code        | 11 |         |    3 | 00/809E : 20 44 F9    |             jsr     {$F944}        
-  117 |  1   sup.s     94 | Code        | 11 |         |    2 | 00/80A1 : A9 A0       |             lda     #$A0           
-  118 |  1   sup.s     94 | Code        | 11 |         |    3 | 00/80A3 : 20 ED FD    |             jsr     {$FDED}        
-  119 |  1   sup.s     95 | Code        | 11 |         |    3 | 00/80A6 : AD 4B 81    |             lda     space          
-  120 |  1   sup.s     96 | Code        | 11 |         |    3 | 00/80A9 : 20 ED FD    |             jsr     {$FDED}        
-  121 |  1   sup.s     97 | Code        | 11 |         |    1 | 00/80AC : 28          |             plp                    
-  122 |  1   sup.s     98 | Code        | 11 |         |    2 | 00/80AD : 90 03       |             bcc     nocarry        
-  123 |  1   sup.s     99 | Empty       | 11 |         |    0 | 00/80AF               |                                    
-  124 |  1   sup.s    100 | Code        | 11 |         |    3 | 00/80AF : 4C BB 80    |             jmp     suite2         
-  125 |  1   sup.s    101 | Code        | 11 |         |    3 | 00/80B2 : AD 4D 81    | nocarry     lda     cns            
-  126 |  1   sup.s    102 | Code        | 11 |         |    3 | 00/80B5 : 20 ED FD    |             jsr     {$FDED}        
-  127 |  1   sup.s    103 | Code        | 11 |         |    3 | 00/80B8 : 4C C1 80    |             jmp     suite22        
-  128 |  1   sup.s    104 | Empty       | 11 |         |    0 | 00/80BB               | suite2                             
-  129 |  1   sup.s    105 | Code        | 11 |         |    3 | 00/80BB : AD 4C 81    |             lda     cs             
-  130 |  1   sup.s    106 | Code        | 11 |         |    3 | 00/80BE : 20 ED FD    |             jsr     {$FDED}        
-  131 |  1   sup.s    107 | Code        | 11 |         |    3 | 00/80C1 : 20 8E FD    | suite22     jsr     {$FD8E}        
-  132 |  1   sup.s    108 | Empty       | 11 |         |    0 | 00/80C4               |                                    
-  133 |  1   sup.s    109 | Comment     | 11 |         |    0 | 00/80C4               | *
-  134 |  1   sup.s    110 | Comment     | 11 |         |    0 | 00/80C4               | * Test macro "ssupeq" (C=1 if A>=B SIGNED )
-  135 |  1   sup.s    111 | Empty       | 11 |         |    0 | 00/80C4               |                                    
-  136 |  1   sup.s    112 | Macro       | 11 |         |    0 | 00/80C4               |             ssupeq  un;deux        
-  137 |  1   sup.s    112 | Empty       | 11 |         |    0 | 00/80C4               |                                    
-  138 |  1   sup.s    112 | Code        | 11 |         |    1 | 00/80C4 : 38          |             sec                    
-  139 |  1   sup.s    112 | Code        | 11 |         |    3 | 00/80C5 : AD 45 81    |             lda     un+1           
-  140 |  1   sup.s    112 | Code        | 11 |         |    3 | 00/80C8 : ED 47 81    |             sbc     deux+1         
-  141 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80CB : F0 0E       |             beq     ozunid_8       
-  142 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80CD : 30 06       |             bmi     ozunid_6       
-  143 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80CF : 50 06       |             bvc     ozunid_7       
-  144 |  1   sup.s    112 | Code        | 11 |         |    1 | 00/80D1 : 18          | ozunid_5    clc                    
-  145 |  1   sup.s    112 | Code        | 11 |         |    3 | 00/80D2 : 4C EF 80    |             jmp     ozunid_12      
-  146 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80D5 : 50 FA       | ozunid_6    bvc     ozunid_5       
-  147 |  1   sup.s    112 | Code        | 11 |         |    1 | 00/80D7 : 38          | ozunid_7    sec                    
-  148 |  1   sup.s    112 | Code        | 11 |         |    3 | 00/80D8 : 4C EF 80    |             jmp     ozunid_12      
-  149 |  1   sup.s    112 | Empty       | 11 |         |    0 | 00/80DB               |                                    
-  150 |  1   sup.s    112 | Code        | 11 |         |    1 | 00/80DB : 38          | ozunid_8    sec                    
-  151 |  1   sup.s    112 | Code        | 11 |         |    3 | 00/80DC : AD 44 81    |             lda     un             
-  152 |  1   sup.s    112 | Code        | 11 |         |    3 | 00/80DF : ED 46 81    |             sbc     deux           
-  153 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80E2 : F0 0B       |             beq     ozunid_12      
-  154 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80E4 : 30 06       |             bmi     ozunid_10      
-  155 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80E6 : 50 06       |             bvc     ozunid_11      
-  156 |  1   sup.s    112 | Code        | 11 |         |    1 | 00/80E8 : 18          | ozunid_9    clc                    
-  157 |  1   sup.s    112 | Code        | 11 |         |    3 | 00/80E9 : 4C EF 80    |             jmp     ozunid_12      
-  158 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80EC : 50 FA       | ozunid_10   bvc     ozunid_9       
-  159 |  1   sup.s    112 | Code        | 11 |         |    1 | 00/80EE : 38          | ozunid_11   sec                    
-  160 |  1   sup.s    112 | Empty       | 11 |         |    0 | 00/80EF               | ozunid_12                          
-  161 |  1   sup.s    113 | Code        | 11 |         |    1 | 00/80EF : 08          |             php                    
-  162 |  1   sup.s    114 | Macro       | 11 |         |    0 | 00/80F0               |             printm  un             
-  163 |  1   sup.s    114 | Empty       | 11 |         |    0 | 00/80F0               |                                    
-  164 |  1   sup.s    114 | Code        | 11 |         |    2 | 00/80F0 : A9 A4       |             lda     #"$"           
-  165 |  1   sup.s    114 | Code        | 11 |         |    3 | 00/80F2 : 20 ED FD    |             jsr     {$FDED}        
-  166 |  1   sup.s    114 | Code        | 11 |         |    3 | 00/80F5 : AE 45 81    |             ldx     un+1           
-  167 |  1   sup.s    114 | Code        | 11 |         |    3 | 00/80F8 : 20 44 F9    |             jsr     {$F944}        
-  168 |  1   sup.s    114 | Code        | 11 |         |    3 | 00/80FB : AE 44 81    |             ldx     un             
-  169 |  1   sup.s    114 | Code        | 11 |         |    3 | 00/80FE : 20 44 F9    |             jsr     {$F944}        
-  170 |  1   sup.s    114 | Code        | 11 |         |    2 | 00/8101 : A9 A0       |             lda     #$A0           
-  171 |  1   sup.s    114 | Code        | 11 |         |    3 | 00/8103 : 20 ED FD    |             jsr     {$FDED}        
-  172 |  1   sup.s    115 | Code        | 11 |         |    3 | 00/8106 : AD 4B 81    |             lda     space          
-  173 |  1   sup.s    116 | Code        | 11 |         |    3 | 00/8109 : 20 ED FD    |             jsr     {$FDED}        
-  174 |  1   sup.s    117 | Macro       | 11 |         |    0 | 00/810C               |             printm  deux           
-  175 |  1   sup.s    117 | Empty       | 11 |         |    0 | 00/810C               |                                    
-  176 |  1   sup.s    117 | Code        | 11 |         |    2 | 00/810C : A9 A4       |             lda     #"$"           
-  177 |  1   sup.s    117 | Code        | 11 |         |    3 | 00/810E : 20 ED FD    |             jsr     {$FDED}        
-  178 |  1   sup.s    117 | Code        | 11 |         |    3 | 00/8111 : AE 47 81    |             ldx     deux+1         
-  179 |  1   sup.s    117 | Code        | 11 |         |    3 | 00/8114 : 20 44 F9    |             jsr     {$F944}        
-  180 |  1   sup.s    117 | Code        | 11 |         |    3 | 00/8117 : AE 46 81    |             ldx     deux           
-  181 |  1   sup.s    117 | Code        | 11 |         |    3 | 00/811A : 20 44 F9    |             jsr     {$F944}        
-  182 |  1   sup.s    117 | Code        | 11 |         |    2 | 00/811D : A9 A0       |             lda     #$A0           
-  183 |  1   sup.s    117 | Code        | 11 |         |    3 | 00/811F : 20 ED FD    |             jsr     {$FDED}        
-  184 |  1   sup.s    118 | Code        | 11 |         |    3 | 00/8122 : AD 4B 81    |             lda     space          
-  185 |  1   sup.s    119 | Code        | 11 |         |    3 | 00/8125 : 20 ED FD    |             jsr     {$FDED}        
-  186 |  1   sup.s    120 | Code        | 11 |         |    1 | 00/8128 : 28          |             plp                    
-  187 |  1   sup.s    121 | Code        | 11 |         |    2 | 00/8129 : 90 09       |             bcc     nocar2         
-  188 |  1   sup.s    122 | Code        | 11 |         |    3 | 00/812B : AD 4C 81    |             lda     cs             
-  189 |  1   sup.s    123 | Code        | 11 |         |    3 | 00/812E : 20 ED FD    |             jsr     {$FDED}        
-  190 |  1   sup.s    124 | Code        | 11 |         |    3 | 00/8131 : 4C 3A 81    |             jmp     suite3         
-  191 |  1   sup.s    125 | Code        | 11 |         |    3 | 00/8134 : AD 4D 81    | nocar2      lda     cns            
-  192 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/8137 : 20 ED FD    |             jsr     {$FDED}        
-  193 |  1   sup.s    127 | Empty       | 11 |         |    0 | 00/813A               |                                    
-  194 |  1   sup.s    128 | Empty       | 11 |         |    0 | 00/813A               |                                    
-  195 |  1   sup.s    129 | Empty       | 11 |         |    0 | 00/813A               | suite3                             
-  196 |  1   sup.s    130 | Code        | 11 |         |    3 | 00/813A : 20 8E FD    |             jsr     {$FD8E}        
-  197 |  1   sup.s    131 | Code        | 11 |         |    3 | 00/813D : 20 8E FD    |             jsr     {$FD8E}        
-  198 |  1   sup.s    132 | Code        | 11 |         |    3 | 00/8140 : 20 8E FD    |             jsr     {$FD8E}        
-  199 |  1   sup.s    133 | Code        | 11 |         |    1 | 00/8143 : 60          |             rts                    
-  200 |  1   sup.s    134 | Empty       | 11 |         |    0 | 00/8144               |                                    
-  201 |  1   sup.s    135 | Data        | 11 |         |    2 | 00/8144 : 03 00       | un          hex     0300           
-  202 |  1   sup.s    136 | Data        | 11 |         |    2 | 00/8146 : FD FF       | deux        hex     FDFF           
-  203 |  1   sup.s    137 | Data        | 11 |         |    1 | 00/8148 : BE          | yes         asc     ">"            
-  204 |  1   sup.s    138 | Data        | 11 |         |    2 | 00/8149 : BC BD       | no          asc     "<="           
-  205 |  1   sup.s    139 | Data        | 11 |         |    1 | 00/814B : A0          | space       asc     " "            
-  206 |  1   sup.s    140 | Data        | 11 |         |    1 | 00/814C : B1          | cs          asc     "1"            
-  207 |  1   sup.s    141 | Data        | 11 |         |    1 | 00/814D : B0          | cns         asc     "0"            
-  208 |  1   sup.s    142 | Empty       | 11 |         |    0 | 00/814E               |                                    
+   36 |  1   sup.s     80 | Directive   | 11 |         |    0 | 00/8000               |             FIN                    
+   37 |  1   sup.s     81 | Empty       | 11 |         |    0 | 00/8000               |                                    
+   38 |  1   sup.s     82 | Directive   | 11 |         |    0 | 00/8000               |             org     $8000          
+   39 |  1   sup.s     83 | Empty       | 11 |         |    0 | 00/8000               |                                    
+   40 |  1   sup.s     84 | Comment     | 11 |         |    0 | 00/8000               | * Test macro "sup" (C=1 if A>B)
+   41 |  1   sup.s     85 | Macro       | 11 |         |    0 | 00/8000               |             sup     un;deux        
+   42 |  1   sup.s     85 | Empty       | 11 |         |    0 | 00/8000               |                                    
+   43 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/8000 : AD A8 81    |             lda     un+1           
+   44 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/8003 : CD AA 81    |             cmp     deux+1         
+   45 |  1   sup.s     85 | Code        | 11 |         |    2 | 00/8006 : F0 03       |             beq     ozunid_1       ; hi(A) > hi (B) see lo
+   46 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/8008 : 4C 14 80    |             jmp     ozunid_2       ; if A > B : C = 1, if A < B : C = 0
+   47 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/800B : AD A7 81    | ozunid_1    lda     un             
+   48 |  1   sup.s     85 | Code        | 11 |         |    3 | 00/800E : CD A9 81    |             cmp     deux           
+   49 |  1   sup.s     85 | Code        | 11 |         |    2 | 00/8011 : D0 01       |             bne     ozunid_2       ; A = B : C= 0; else C is set accordingly
+   50 |  1   sup.s     85 | Code        | 11 |         |    1 | 00/8013 : 18          |             clc                    
+   51 |  1   sup.s     85 | Empty       | 11 |         |    0 | 00/8014               | ozunid_2                           
+   52 |  1   sup.s     86 | Code        | 11 |         |    1 | 00/8014 : 08          |             php                    
+   53 |  1   sup.s     87 | Macro       | 11 |         |    0 | 00/8015               |             printm  un             
+   54 |  1   sup.s     87 | Empty       | 11 |         |    0 | 00/8015               |                                    
+   55 |  1   sup.s     87 | Code        | 11 |         |    2 | 00/8015 : A9 A4       |             lda     #"$"           
+   56 |  1   sup.s     87 | Code        | 11 |         |    3 | 00/8017 : 20 ED FD    |             jsr     {$FDED}        
+   57 |  1   sup.s     87 | Code        | 11 |         |    3 | 00/801A : AE A8 81    |             ldx     un+1           
+   58 |  1   sup.s     87 | Code        | 11 |         |    3 | 00/801D : 20 44 F9    |             jsr     {$F944}        
+   59 |  1   sup.s     87 | Code        | 11 |         |    3 | 00/8020 : AE A7 81    |             ldx     un             
+   60 |  1   sup.s     87 | Code        | 11 |         |    3 | 00/8023 : 20 44 F9    |             jsr     {$F944}        
+   61 |  1   sup.s     87 | Code        | 11 |         |    2 | 00/8026 : A9 A0       |             lda     #$A0           
+   62 |  1   sup.s     87 | Code        | 11 |         |    3 | 00/8028 : 20 ED FD    |             jsr     {$FDED}        
+   63 |  1   sup.s     88 | Code        | 11 |         |    1 | 00/802B : 28          |             plp                    
+   64 |  1   sup.s     89 | Code        | 11 |         |    2 | 00/802C : 90 09       |             bcc     dono           
+   65 |  1   sup.s     90 | Code        | 11 |         |    3 | 00/802E : AD AB 81    |             lda     yes            
+   66 |  1   sup.s     91 | Code        | 11 |         |    3 | 00/8031 : 20 ED FD    |             jsr     {$FDED}        
+   67 |  1   sup.s     92 | Code        | 11 |         |    3 | 00/8034 : 4C 43 80    |             jmp     suite1         
+   68 |  1   sup.s     93 | Code        | 11 |         |    3 | 00/8037 : AD AC 81    | dono        lda     no             
+   69 |  1   sup.s     94 | Code        | 11 |         |    3 | 00/803A : 20 ED FD    |             jsr     {$FDED}        
+   70 |  1   sup.s     95 | Code        | 11 |         |    3 | 00/803D : AD AD 81    |             lda     no+1           
+   71 |  1   sup.s     96 | Code        | 11 |         |    3 | 00/8040 : 20 ED FD    |             jsr     {$FDED}        
+   72 |  1   sup.s     97 | Code        | 11 |         |    3 | 00/8043 : AD AE 81    | suite1      lda     space          
+   73 |  1   sup.s     98 | Code        | 11 |         |    3 | 00/8046 : 20 ED FD    |             jsr     {$FDED}        
+   74 |  1   sup.s     99 | Macro       | 11 |         |    0 | 00/8049               |             printm  deux           
+   75 |  1   sup.s     99 | Empty       | 11 |         |    0 | 00/8049               |                                    
+   76 |  1   sup.s     99 | Code        | 11 |         |    2 | 00/8049 : A9 A4       |             lda     #"$"           
+   77 |  1   sup.s     99 | Code        | 11 |         |    3 | 00/804B : 20 ED FD    |             jsr     {$FDED}        
+   78 |  1   sup.s     99 | Code        | 11 |         |    3 | 00/804E : AE AA 81    |             ldx     deux+1         
+   79 |  1   sup.s     99 | Code        | 11 |         |    3 | 00/8051 : 20 44 F9    |             jsr     {$F944}        
+   80 |  1   sup.s     99 | Code        | 11 |         |    3 | 00/8054 : AE A9 81    |             ldx     deux           
+   81 |  1   sup.s     99 | Code        | 11 |         |    3 | 00/8057 : 20 44 F9    |             jsr     {$F944}        
+   82 |  1   sup.s     99 | Code        | 11 |         |    2 | 00/805A : A9 A0       |             lda     #$A0           
+   83 |  1   sup.s     99 | Code        | 11 |         |    3 | 00/805C : 20 ED FD    |             jsr     {$FDED}        
+   84 |  1   sup.s    100 | Empty       | 11 |         |    0 | 00/805F               |                                    
+   85 |  1   sup.s    101 | Comment     | 11 |         |    0 | 00/805F               | * Test macro "supeq" (C=1 if A>=B)
+   86 |  1   sup.s    102 | Code        | 11 |         |    3 | 00/805F : 20 8E FD    |             jsr     {$FD8E}        
+   87 |  1   sup.s    103 | Macro       | 11 |         |    0 | 00/8062               |             supeq   un;deux        
+   88 |  1   sup.s    103 | Empty       | 11 |         |    0 | 00/8062               |                                    
+   89 |  1   sup.s    103 | Code        | 11 |         |    3 | 00/8062 : AD A8 81    |             lda     un+1           
+   90 |  1   sup.s    103 | Code        | 11 |         |    3 | 00/8065 : CD AA 81    |             cmp     deux+1         
+   91 |  1   sup.s    103 | Code        | 11 |         |    2 | 00/8068 : F0 03       |             beq     ozunid_3       ; hi(A) > hi (B) see lo
+   92 |  1   sup.s    103 | Code        | 11 |         |    3 | 00/806A : 4C 73 80    |             jmp     ozunid_4       ; if A >= B : C = 1, if A < B : C = 0
+   93 |  1   sup.s    103 | Code        | 11 |         |    3 | 00/806D : AD A7 81    | ozunid_3    lda     un             
+   94 |  1   sup.s    103 | Code        | 11 |         |    3 | 00/8070 : CD A9 81    |             cmp     deux           
+   95 |  1   sup.s    103 | Empty       | 11 |         |    0 | 00/8073               | ozunid_4                           
+   96 |  1   sup.s    104 | Code        | 11 |         |    1 | 00/8073 : 08          |             php                    
+   97 |  1   sup.s    105 | Macro       | 11 |         |    0 | 00/8074               |             printm  un             
+   98 |  1   sup.s    105 | Empty       | 11 |         |    0 | 00/8074               |                                    
+   99 |  1   sup.s    105 | Code        | 11 |         |    2 | 00/8074 : A9 A4       |             lda     #"$"           
+  100 |  1   sup.s    105 | Code        | 11 |         |    3 | 00/8076 : 20 ED FD    |             jsr     {$FDED}        
+  101 |  1   sup.s    105 | Code        | 11 |         |    3 | 00/8079 : AE A8 81    |             ldx     un+1           
+  102 |  1   sup.s    105 | Code        | 11 |         |    3 | 00/807C : 20 44 F9    |             jsr     {$F944}        
+  103 |  1   sup.s    105 | Code        | 11 |         |    3 | 00/807F : AE A7 81    |             ldx     un             
+  104 |  1   sup.s    105 | Code        | 11 |         |    3 | 00/8082 : 20 44 F9    |             jsr     {$F944}        
+  105 |  1   sup.s    105 | Code        | 11 |         |    2 | 00/8085 : A9 A0       |             lda     #$A0           
+  106 |  1   sup.s    105 | Code        | 11 |         |    3 | 00/8087 : 20 ED FD    |             jsr     {$FDED}        
+  107 |  1   sup.s    106 | Code        | 11 |         |    3 | 00/808A : AD AE 81    |             lda     space          
+  108 |  1   sup.s    107 | Code        | 11 |         |    3 | 00/808D : 20 ED FD    |             jsr     {$FDED}        
+  109 |  1   sup.s    108 | Macro       | 11 |         |    0 | 00/8090               |             printm  deux           
+  110 |  1   sup.s    108 | Empty       | 11 |         |    0 | 00/8090               |                                    
+  111 |  1   sup.s    108 | Code        | 11 |         |    2 | 00/8090 : A9 A4       |             lda     #"$"           
+  112 |  1   sup.s    108 | Code        | 11 |         |    3 | 00/8092 : 20 ED FD    |             jsr     {$FDED}        
+  113 |  1   sup.s    108 | Code        | 11 |         |    3 | 00/8095 : AE AA 81    |             ldx     deux+1         
+  114 |  1   sup.s    108 | Code        | 11 |         |    3 | 00/8098 : 20 44 F9    |             jsr     {$F944}        
+  115 |  1   sup.s    108 | Code        | 11 |         |    3 | 00/809B : AE A9 81    |             ldx     deux           
+  116 |  1   sup.s    108 | Code        | 11 |         |    3 | 00/809E : 20 44 F9    |             jsr     {$F944}        
+  117 |  1   sup.s    108 | Code        | 11 |         |    2 | 00/80A1 : A9 A0       |             lda     #$A0           
+  118 |  1   sup.s    108 | Code        | 11 |         |    3 | 00/80A3 : 20 ED FD    |             jsr     {$FDED}        
+  119 |  1   sup.s    109 | Code        | 11 |         |    3 | 00/80A6 : AD AE 81    |             lda     space          
+  120 |  1   sup.s    110 | Code        | 11 |         |    3 | 00/80A9 : 20 ED FD    |             jsr     {$FDED}        
+  121 |  1   sup.s    111 | Code        | 11 |         |    1 | 00/80AC : 28          |             plp                    
+  122 |  1   sup.s    112 | Code        | 11 |         |    2 | 00/80AD : 90 03       |             bcc     nocarry        
+  123 |  1   sup.s    113 | Empty       | 11 |         |    0 | 00/80AF               |                                    
+  124 |  1   sup.s    114 | Code        | 11 |         |    3 | 00/80AF : 4C BB 80    |             jmp     suite2         
+  125 |  1   sup.s    115 | Code        | 11 |         |    3 | 00/80B2 : AD B0 81    | nocarry     lda     cns            
+  126 |  1   sup.s    116 | Code        | 11 |         |    3 | 00/80B5 : 20 ED FD    |             jsr     {$FDED}        
+  127 |  1   sup.s    117 | Code        | 11 |         |    3 | 00/80B8 : 4C C1 80    |             jmp     suite22        
+  128 |  1   sup.s    118 | Empty       | 11 |         |    0 | 00/80BB               | suite2                             
+  129 |  1   sup.s    119 | Code        | 11 |         |    3 | 00/80BB : AD AF 81    |             lda     cs             
+  130 |  1   sup.s    120 | Code        | 11 |         |    3 | 00/80BE : 20 ED FD    |             jsr     {$FDED}        
+  131 |  1   sup.s    121 | Code        | 11 |         |    3 | 00/80C1 : 20 8E FD    | suite22     jsr     {$FD8E}        
+  132 |  1   sup.s    122 | Empty       | 11 |         |    0 | 00/80C4               |                                    
+  133 |  1   sup.s    123 | Comment     | 11 |         |    0 | 00/80C4               | *
+  134 |  1   sup.s    124 | Comment     | 11 |         |    0 | 00/80C4               | * Test macro "ssupeq" (C=1 if A>=B SIGNED )
+  135 |  1   sup.s    125 | Empty       | 11 |         |    0 | 00/80C4               |                                    
+  136 |  1   sup.s    126 | Macro       | 11 |         |    0 | 00/80C4               |             ssupeq  un;deux        
+  137 |  1   sup.s    126 | Empty       | 11 |         |    0 | 00/80C4               |                                    
+  138 |  1   sup.s    126 | Code        | 11 |         |    1 | 00/80C4 : 38          |             sec                    
+  139 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/80C5 : AD A8 81    |             lda     un+1           
+  140 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/80C8 : ED AA 81    |             sbc     deux+1         
+  141 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80CB : F0 0E       |             beq     ozunid_8       
+  142 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80CD : 30 06       |             bmi     ozunid_6       
+  143 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80CF : 50 06       |             bvc     ozunid_7       
+  144 |  1   sup.s    126 | Code        | 11 |         |    1 | 00/80D1 : 18          | ozunid_5    clc                    
+  145 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/80D2 : 4C EF 80    |             jmp     ozunid_12      
+  146 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80D5 : 50 FA       | ozunid_6    bvc     ozunid_5       
+  147 |  1   sup.s    126 | Code        | 11 |         |    1 | 00/80D7 : 38          | ozunid_7    sec                    
+  148 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/80D8 : 4C EF 80    |             jmp     ozunid_12      
+  149 |  1   sup.s    126 | Empty       | 11 |         |    0 | 00/80DB               |                                    
+  150 |  1   sup.s    126 | Code        | 11 |         |    1 | 00/80DB : 38          | ozunid_8    sec                    
+  151 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/80DC : AD A7 81    |             lda     un             
+  152 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/80DF : ED A9 81    |             sbc     deux           
+  153 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80E2 : F0 0B       |             beq     ozunid_12      
+  154 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80E4 : 30 06       |             bmi     ozunid_10      
+  155 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80E6 : 50 06       |             bvc     ozunid_11      
+  156 |  1   sup.s    126 | Code        | 11 |         |    1 | 00/80E8 : 18          | ozunid_9    clc                    
+  157 |  1   sup.s    126 | Code        | 11 |         |    3 | 00/80E9 : 4C EF 80    |             jmp     ozunid_12      
+  158 |  1   sup.s    126 | Code        | 11 |         |    2 | 00/80EC : 50 FA       | ozunid_10   bvc     ozunid_9       
+  159 |  1   sup.s    126 | Code        | 11 |         |    1 | 00/80EE : 38          | ozunid_11   sec                    
+  160 |  1   sup.s    126 | Empty       | 11 |         |    0 | 00/80EF               | ozunid_12                          
+  161 |  1   sup.s    127 | Code        | 11 |         |    1 | 00/80EF : 08          |             php                    
+  162 |  1   sup.s    128 | Macro       | 11 |         |    0 | 00/80F0               |             printm  un             
+  163 |  1   sup.s    128 | Empty       | 11 |         |    0 | 00/80F0               |                                    
+  164 |  1   sup.s    128 | Code        | 11 |         |    2 | 00/80F0 : A9 A4       |             lda     #"$"           
+  165 |  1   sup.s    128 | Code        | 11 |         |    3 | 00/80F2 : 20 ED FD    |             jsr     {$FDED}        
+  166 |  1   sup.s    128 | Code        | 11 |         |    3 | 00/80F5 : AE A8 81    |             ldx     un+1           
+  167 |  1   sup.s    128 | Code        | 11 |         |    3 | 00/80F8 : 20 44 F9    |             jsr     {$F944}        
+  168 |  1   sup.s    128 | Code        | 11 |         |    3 | 00/80FB : AE A7 81    |             ldx     un             
+  169 |  1   sup.s    128 | Code        | 11 |         |    3 | 00/80FE : 20 44 F9    |             jsr     {$F944}        
+  170 |  1   sup.s    128 | Code        | 11 |         |    2 | 00/8101 : A9 A0       |             lda     #$A0           
+  171 |  1   sup.s    128 | Code        | 11 |         |    3 | 00/8103 : 20 ED FD    |             jsr     {$FDED}        
+  172 |  1   sup.s    129 | Code        | 11 |         |    3 | 00/8106 : AD AE 81    |             lda     space          
+  173 |  1   sup.s    130 | Code        | 11 |         |    3 | 00/8109 : 20 ED FD    |             jsr     {$FDED}        
+  174 |  1   sup.s    131 | Macro       | 11 |         |    0 | 00/810C               |             printm  deux           
+  175 |  1   sup.s    131 | Empty       | 11 |         |    0 | 00/810C               |                                    
+  176 |  1   sup.s    131 | Code        | 11 |         |    2 | 00/810C : A9 A4       |             lda     #"$"           
+  177 |  1   sup.s    131 | Code        | 11 |         |    3 | 00/810E : 20 ED FD    |             jsr     {$FDED}        
+  178 |  1   sup.s    131 | Code        | 11 |         |    3 | 00/8111 : AE AA 81    |             ldx     deux+1         
+  179 |  1   sup.s    131 | Code        | 11 |         |    3 | 00/8114 : 20 44 F9    |             jsr     {$F944}        
+  180 |  1   sup.s    131 | Code        | 11 |         |    3 | 00/8117 : AE A9 81    |             ldx     deux           
+  181 |  1   sup.s    131 | Code        | 11 |         |    3 | 00/811A : 20 44 F9    |             jsr     {$F944}        
+  182 |  1   sup.s    131 | Code        | 11 |         |    2 | 00/811D : A9 A0       |             lda     #$A0           
+  183 |  1   sup.s    131 | Code        | 11 |         |    3 | 00/811F : 20 ED FD    |             jsr     {$FDED}        
+  184 |  1   sup.s    132 | Code        | 11 |         |    3 | 00/8122 : AD AE 81    |             lda     space          
+  185 |  1   sup.s    133 | Code        | 11 |         |    3 | 00/8125 : 20 ED FD    |             jsr     {$FDED}        
+  186 |  1   sup.s    134 | Code        | 11 |         |    1 | 00/8128 : 28          |             plp                    
+  187 |  1   sup.s    135 | Code        | 11 |         |    2 | 00/8129 : 90 09       |             bcc     nocar2         
+  188 |  1   sup.s    136 | Code        | 11 |         |    3 | 00/812B : AD AF 81    |             lda     cs             
+  189 |  1   sup.s    137 | Code        | 11 |         |    3 | 00/812E : 20 ED FD    |             jsr     {$FDED}        
+  190 |  1   sup.s    138 | Code        | 11 |         |    3 | 00/8131 : 4C 3A 81    |             jmp     suite3         
+  191 |  1   sup.s    139 | Code        | 11 |         |    3 | 00/8134 : AD B0 81    | nocar2      lda     cns            
+  192 |  1   sup.s    140 | Code        | 11 |         |    3 | 00/8137 : 20 ED FD    |             jsr     {$FDED}        
+  193 |  1   sup.s    141 | Empty       | 11 |         |    0 | 00/813A               |                                    
+  194 |  1   sup.s    142 | Empty       | 11 |         |    0 | 00/813A               |                                    
+  195 |  1   sup.s    143 | Empty       | 11 |         |    0 | 00/813A               | suite3                             
+  196 |  1   sup.s    144 | Code        | 11 |         |    3 | 00/813A : 20 8E FD    |             jsr     {$FD8E}        
+  197 |  1   sup.s    145 | Macro       | 11 |         |    0 | 00/813D               |             equal   un;deux        
+  198 |  1   sup.s    145 | Empty       | 11 |         |    0 | 00/813D               |                                    
+  199 |  1   sup.s    145 | Code        | 11 |         |    3 | 00/813D : AD A7 81    |             lda     un             
+  200 |  1   sup.s    145 | Code        | 11 |         |    3 | 00/8140 : CD A9 81    |             cmp     deux           
+  201 |  1   sup.s    145 | Code        | 11 |         |    2 | 00/8143 : D0 0B       |             bne     ozunid_13      
+  202 |  1   sup.s    145 | Code        | 11 |         |    3 | 00/8145 : AD A8 81    |             lda     un+1           
+  203 |  1   sup.s    145 | Code        | 11 |         |    3 | 00/8148 : CD AA 81    |             cmp     deux+1         
+  204 |  1   sup.s    145 | Code        | 11 |         |    2 | 00/814B : D0 03       |             bne     ozunid_13      
+  205 |  1   sup.s    145 | Code        | 11 |         |    3 | 00/814D : 4C 54 81    |             jmp     ozunid_14      
+  206 |  1   sup.s    145 | Code        | 11 |         |    1 | 00/8150 : 18          | ozunid_13   clc                    
+  207 |  1   sup.s    145 | Code        | 11 |         |    3 | 00/8151 : 4C 55 81    |             jmp     ozunid_15      
+  208 |  1   sup.s    145 | Code        | 11 |         |    1 | 00/8154 : 38          | ozunid_14   sec                    
+  209 |  1   sup.s    145 | Empty       | 11 |         |    0 | 00/8155               | ozunid_15                          
+  210 |  1   sup.s    146 | Code        | 11 |         |    1 | 00/8155 : 08          |             php                    
+  211 |  1   sup.s    147 | Macro       | 11 |         |    0 | 00/8156               |             printm  un             
+  212 |  1   sup.s    147 | Empty       | 11 |         |    0 | 00/8156               |                                    
+  213 |  1   sup.s    147 | Code        | 11 |         |    2 | 00/8156 : A9 A4       |             lda     #"$"           
+  214 |  1   sup.s    147 | Code        | 11 |         |    3 | 00/8158 : 20 ED FD    |             jsr     {$FDED}        
+  215 |  1   sup.s    147 | Code        | 11 |         |    3 | 00/815B : AE A8 81    |             ldx     un+1           
+  216 |  1   sup.s    147 | Code        | 11 |         |    3 | 00/815E : 20 44 F9    |             jsr     {$F944}        
+  217 |  1   sup.s    147 | Code        | 11 |         |    3 | 00/8161 : AE A7 81    |             ldx     un             
+  218 |  1   sup.s    147 | Code        | 11 |         |    3 | 00/8164 : 20 44 F9    |             jsr     {$F944}        
+  219 |  1   sup.s    147 | Code        | 11 |         |    2 | 00/8167 : A9 A0       |             lda     #$A0           
+  220 |  1   sup.s    147 | Code        | 11 |         |    3 | 00/8169 : 20 ED FD    |             jsr     {$FDED}        
+  221 |  1   sup.s    148 | Code        | 11 |         |    3 | 00/816C : AD AE 81    |             lda     space          
+  222 |  1   sup.s    149 | Code        | 11 |         |    3 | 00/816F : 20 ED FD    |             jsr     {$FDED}        
+  223 |  1   sup.s    150 | Macro       | 11 |         |    0 | 00/8172               |             printm  deux           
+  224 |  1   sup.s    150 | Empty       | 11 |         |    0 | 00/8172               |                                    
+  225 |  1   sup.s    150 | Code        | 11 |         |    2 | 00/8172 : A9 A4       |             lda     #"$"           
+  226 |  1   sup.s    150 | Code        | 11 |         |    3 | 00/8174 : 20 ED FD    |             jsr     {$FDED}        
+  227 |  1   sup.s    150 | Code        | 11 |         |    3 | 00/8177 : AE AA 81    |             ldx     deux+1         
+  228 |  1   sup.s    150 | Code        | 11 |         |    3 | 00/817A : 20 44 F9    |             jsr     {$F944}        
+  229 |  1   sup.s    150 | Code        | 11 |         |    3 | 00/817D : AE A9 81    |             ldx     deux           
+  230 |  1   sup.s    150 | Code        | 11 |         |    3 | 00/8180 : 20 44 F9    |             jsr     {$F944}        
+  231 |  1   sup.s    150 | Code        | 11 |         |    2 | 00/8183 : A9 A0       |             lda     #$A0           
+  232 |  1   sup.s    150 | Code        | 11 |         |    3 | 00/8185 : 20 ED FD    |             jsr     {$FDED}        
+  233 |  1   sup.s    151 | Code        | 11 |         |    3 | 00/8188 : AD AE 81    |             lda     space          
+  234 |  1   sup.s    152 | Code        | 11 |         |    3 | 00/818B : 20 ED FD    |             jsr     {$FDED}        
+  235 |  1   sup.s    153 | Code        | 11 |         |    1 | 00/818E : 28          |             plp                    
+  236 |  1   sup.s    154 | Code        | 11 |         |    2 | 00/818F : 90 09       |             bcc     pnoteq         
+  237 |  1   sup.s    155 | Code        | 11 |         |    3 | 00/8191 : AD B1 81    |             lda     eg             
+  238 |  1   sup.s    156 | Code        | 11 |         |    3 | 00/8194 : 20 ED FD    |             jsr     {$FDED}        
+  239 |  1   sup.s    157 | Code        | 11 |         |    3 | 00/8197 : 4C A0 81    |             jmp     suite4         
+  240 |  1   sup.s    158 | Code        | 11 |         |    3 | 00/819A : AD B2 81    | pnoteq      lda     noteg          
+  241 |  1   sup.s    159 | Code        | 11 |         |    3 | 00/819D : 20 ED FD    |             jsr     {$FDED}        
+  242 |  1   sup.s    160 | Empty       | 11 |         |    0 | 00/81A0               |                                    
+  243 |  1   sup.s    161 | Empty       | 11 |         |    0 | 00/81A0               | suite4                             
+  244 |  1   sup.s    162 | Code        | 11 |         |    3 | 00/81A0 : 20 8E FD    |             jsr     {$FD8E}        
+  245 |  1   sup.s    163 | Code        | 11 |         |    3 | 00/81A3 : 20 8E FD    |             jsr     {$FD8E}        
+  246 |  1   sup.s    164 | Code        | 11 |         |    1 | 00/81A6 : 60          |             rts                    
+  247 |  1   sup.s    165 | Empty       | 11 |         |    0 | 00/81A7               |                                    
+  248 |  1   sup.s    166 | Data        | 11 |         |    2 | 00/81A7 : 04 00       | un          hex     0400           
+  249 |  1   sup.s    167 | Data        | 11 |         |    2 | 00/81A9 : FC FF       | deux        hex     FCFF           
+  250 |  1   sup.s    168 | Data        | 11 |         |    1 | 00/81AB : BE          | yes         asc     ">"            
+  251 |  1   sup.s    169 | Data        | 11 |         |    2 | 00/81AC : BC BD       | no          asc     "<="           
+  252 |  1   sup.s    170 | Data        | 11 |         |    1 | 00/81AE : A0          | space       asc     " "            
+  253 |  1   sup.s    171 | Data        | 11 |         |    1 | 00/81AF : B1          | cs          asc     "1"            
+  254 |  1   sup.s    172 | Data        | 11 |         |    1 | 00/81B0 : B0          | cns         asc     "0"            
+  255 |  1   sup.s    173 | Data        | 11 |         |    1 | 00/81B1 : BD          | eg          asc     "="            
+  256 |  1   sup.s    174 | Data        | 11 |         |    1 | 00/81B2 : CE          | noteg       asc     "N"            
+  257 |  1   sup.s    175 | Empty       | 11 |         |    0 | 00/81B3               |                                    
 ------+-------------------+-------------+----+---------+------+-----------------------+-------------------------------------------------------------------
