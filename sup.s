@@ -63,6 +63,9 @@ less2   bvc less3
 more2   sec
 ssupeqe EOM
 
+
+
+
 equal   MAC
 * Set CARRY if ]1 = ]2 (16 bits values)
         lda ]1
@@ -76,6 +79,62 @@ noteq   clc
         jmp outeq
 okequal sec
 outeq   EOM
+
+ssup    MAC
+* Set CARRY if ]1 > ]2 (16 bits SIGNED values)
+        sec
+        lda ]1+1
+        sbc ]2+1
+        beq egal32
+        bmi less02
+        bvc more1
+less12  clc 
+        jmp ssupeqe2
+less02  bvc less12
+more1   sec
+        jmp ssupeqe2
+*
+egal32  sec
+        lda ]1
+        sbc ]2
+        beq less32
+        bmi less22
+        bvc more22
+less32  clc
+        jmp ssupeqe2
+less22  bvc less32 
+more22  sec
+ssupeqe2 EOM
+
+ssupeq2 MAC
+        lda ]1
+        cmp ]2
+        lda ]1+1
+        sbc ]2+1
+        bvc vneq        ; N eor V
+        eor #$80
+vneq    bmi doinfeq
+        jmp dosupeq
+doinfeq clc
+        jmp ssup2eqe
+dosupeq sec
+ssup2eqe EOM
+
+ssup2 MAC
+        equal ]1;]2
+        bcs doinf       ; clear C if equals
+        lda ]1
+        cmp ]2
+        lda ]1+1
+        sbc ]2+1
+        bvc vn          ; N eor V
+        eor #$80
+vn      bmi doinf
+        jmp dosup
+doinf   clc
+        jmp ssup2e
+dosup   sec
+ssup2e  EOM
 
         FIN
 
@@ -157,10 +216,31 @@ suite3
         jmp suite4
 pnoteq  lda noteg
         jsr cout
+        jsr cr
 
 suite4
+* test ssup 
+        jsr cr
+        lda #"S"
+        jsr cout
+        jsr cr
+        ssupeq2 val1;val2
+        php
+        printm val1
+        lda space 
+        jsr cout
+        printm val2
+        lda space 
+        jsr cout
+        plp
+        bcs ssupon
+        lda cns
+        jmp suite6
+ssupon  lda cs 
+suite6  jsr cout
         jsr cr
         jsr cr
+
         rts
 
 un      hex 0400
@@ -172,3 +252,5 @@ cs      asc "1"
 cns     asc "0"
 eg      asc "="
 noteg   asc "N"
+val1    hex 9F90
+val2    hex 9E90
